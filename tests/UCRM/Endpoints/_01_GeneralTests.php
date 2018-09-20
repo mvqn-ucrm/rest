@@ -67,15 +67,10 @@ class _01_GeneralTests extends \PHPUnit\Framework\TestCase
         echo $countries."\n";
 
         echo ">>> Country::get()\n";
-        echo "[\n";
-        foreach($countries as $country)
-        {
-            /** @var Country $country */
-            $country->getName();
-            echo "\t" . $country . ",\n";
-        }
-        echo "]\n";
-        echo "\n";
+        echo "[\n\t";
+        echo implode(",\n\t", $countries->elements());
+        echo "\n]\n";
+
     }
 
     // -----------------------------------------------------------------------------------------------------------------
