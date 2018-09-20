@@ -10,12 +10,116 @@ composer require mvqn/rest-ucrm
 
 ## Documentation
 
-GENERAL
+General
 - [Version](docs/UCRM/Endpoints/Version.md)
 - [Country](docs/UCRM/Endpoints/Country.md)
+- [Currency](docs/UCRM/Endpoints/Currency.md)
 
+Clients
+- *DOCUMENTATION COMING SOON!*
 
-COMING SOON
+Payment Plans
+- *DOCUMENTATION COMING SOON!*
+
+Client Logs
+- *DOCUMENTATION COMING SOON!*
+
+Services
+- *DOCUMENTATION COMING SOON!*
+
+Service Surcharges
+- *DOCUMENTATION COMING SOON!*
+
+Service Devices
+- *DOCUMENTATION COMING SOON!*
+
+Service IPs
+- *DOCUMENTATION COMING SOON!*
+
+Sites
+- *DOCUMENTATION COMING SOON!*
+
+Devices
+- *DOCUMENTATION COMING SOON!*
+
+Device Interfaces
+- *DOCUMENTATION COMING SOON!*
+
+Invoices
+- *DOCUMENTATION COMING SOON!*
+
+Quotes
+- *DOCUMENTATION COMING SOON!*
+
+Invoice Templates
+- *DOCUMENTATION COMING SOON!*
+
+Quote Templates
+- *DOCUMENTATION COMING SOON!*
+
+Payments
+- *DOCUMENTATION COMING SOON!*
+
+Refunds
+- *DOCUMENTATION COMING SOON!*
+
+Users
+- *DOCUMENTATION COMING SOON!*
+
+Organizations
+- *DOCUMENTATION COMING SOON!*
+
+Service Plans
+- *DOCUMENTATION COMING SOON!*
+
+Surcharges
+- *DOCUMENTATION COMING SOON!*
+
+Taxes
+- *DOCUMENTATION COMING SOON!*
+
+Products
+- *DOCUMENTATION COMING SOON!*
+
+Vendors
+- *DOCUMENTATION COMING SOON!*
+
+Jobs
+- *DOCUMENTATION COMING SOON!*
+
+Job Attachments
+- *DOCUMENTATION COMING SOON!*
+
+Job Comments
+- *DOCUMENTATION COMING SOON!*
+
+Job Tasks
+- *DOCUMENTATION COMING SOON!*
+
+Custom Attributes
+- *DOCUMENTATION COMING SOON!*
+
+Tickets
+- *DOCUMENTATION COMING SOON!*
+
+Ticket Activity
+- *DOCUMENTATION COMING SOON!*
+
+Ticket Comments
+- *DOCUMENTATION COMING SOON!*
+
+Ticket Comment Attachments
+- *DOCUMENTATION COMING SOON!*
+
+Ticket Groups
+- *DOCUMENTATION COMING SOON!*
+
+Mobile
+- *DOCUMENTATION COMING SOON!*
+
+Webhook Events
+- *DOCUMENTATION COMING SOON!*
+
 
 
 

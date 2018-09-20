@@ -163,6 +163,7 @@ class _01_GeneralTests extends \PHPUnit\Framework\TestCase
         $currency = Currency::getByName("Dollars")->where("code", "USD")->first();
         $this->assertEquals("Dollars", $currency->getName());
 
+        $currency = Currency::getByName("Dollars");
         echo ">>> Currency::getByName('Dollars')\n";
         echo $currency."\n";
         echo "\n";

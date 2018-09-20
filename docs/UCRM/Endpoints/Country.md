@@ -27,7 +27,6 @@ use MVQN\REST\UCRM\Endpoints\Country;
 
 /** @var Country $country */
 $country = Country::getById(249);
-
 echo $country;
 ```
 ```json
@@ -45,7 +44,6 @@ use MVQN\REST\UCRM\Endpoints\Country;
 
 /** @var Country $country */
 $country = Country::getByName("United States");
-
 echo $country;
 ```
 ```json
@@ -60,7 +58,6 @@ use MVQN\REST\UCRM\Endpoints\Country;
 
 /** @var Country $country */
 $country = Country::getByCode("US");
-
 echo $country;
 ```
 ```json
@@ -79,7 +76,6 @@ $country = Country::getByName("United States");
 
 /** @var StateCollection $states */
 $states = $country->getStates();
-
 echo $states;
 ```
 ```json
