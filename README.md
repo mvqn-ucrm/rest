@@ -140,7 +140,7 @@ A semi-complex PHP-Doc Annotation parsing library, specifically designed for use
 [mvqn/collections](https://github.com/mvqn/collections)\
 A collections library, specifically designed for use in MVQN projects, but generic enough for anything!
 
-[mvqn/rest](https://github.com/mvqn/collections)\
+[mvqn/rest](https://github.com/mvqn/rest)\
 A simple REST Client library for interfacing with generic REST Endpoints.
 
 
