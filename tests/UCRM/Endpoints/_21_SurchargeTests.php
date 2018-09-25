@@ -16,8 +16,6 @@ class _21_SurchargeTests extends \PHPUnit\Framework\TestCase
     /** @var string Location of the .env file for development. */
     protected const DOTENV_PATH = __DIR__ . "/../../../";
 
-    // -----------------------------------------------------------------------------------------------------------------
-
     protected function setUp()
     {
         // Load ENV variables from a file during development.
@@ -26,6 +24,8 @@ class _21_SurchargeTests extends \PHPUnit\Framework\TestCase
             $dotenv = new \Dotenv\Dotenv(self::DOTENV_PATH);
             $dotenv->load();
         }
+
+        //RestClient::cacheDir(__DIR__);
 
         RestClient::setBaseUrl(getenv("REST_URL"));
         RestClient::setHeaders([

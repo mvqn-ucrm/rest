@@ -26,6 +26,8 @@ class _02_ClientTests extends \PHPUnit\Framework\TestCase
             $dotenv->load();
         }
 
+        //RestClient::cacheDir(__DIR__);
+
         RestClient::setBaseUrl(getenv("REST_URL"));
         RestClient::setHeaders([
             "Content-Type: application/json",

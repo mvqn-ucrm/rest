@@ -25,8 +25,7 @@ class _36_WebhookEventTests extends \PHPUnit\Framework\TestCase
             $dotenv->load();
         }
 
-        //AnnotationReader::cacheDir(__DIR__);
-        RestClient::cacheDir(__DIR__);
+        //RestClient::cacheDir(__DIR__);
 
         RestClient::setBaseUrl(getenv("REST_URL"));
         RestClient::setHeaders([
