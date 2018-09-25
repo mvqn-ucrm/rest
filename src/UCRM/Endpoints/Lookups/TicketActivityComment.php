@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Lookups;
 
+use MVQN\REST\Annotations\PostAnnotation as Post;
+use MVQN\REST\Annotations\PatchAnnotation as Patch;
+
 use MVQN\Collections\Collection;
 
 /**
@@ -19,7 +22,6 @@ use MVQN\Collections\Collection;
  */
 final class TicketActivityComment extends Lookup
 {
-
     // =================================================================================================================
     // PROPERTIES
     // -----------------------------------------------------------------------------------------------------------------

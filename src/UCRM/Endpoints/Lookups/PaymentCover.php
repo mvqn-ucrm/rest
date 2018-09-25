@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Lookups;
 
-use MVQN\REST\UCRM\Endpoints\Helpers\Common\{InvoiceHelpers,PaymentHelpers,RefundHelpers};
+use MVQN\REST\Annotations\PostAnnotation as Post;
+use MVQN\REST\Annotations\PatchAnnotation as Patch;
+
+use MVQN\REST\UCRM\Endpoints\Helpers\Common;
 
 /**
  * Class PaymentCover
@@ -11,12 +14,24 @@ use MVQN\REST\UCRM\Endpoints\Helpers\Common\{InvoiceHelpers,PaymentHelpers,Refun
  * @package UCRM\REST\Endpoints
  * @author Ryan Spaeth <rspaeth@mvqn.net>
  * @final
+ *
+ * @method int|null getId()
+ * @method PaymentCover setId(int $id)
+ * @method int|null getPaymentId()
+ * @method PaymentCover setPaymentId(int $id)
+ * @method int|null getInvoiceId()
+ * @method PaymentCover setInvoiceId(int $id)
+ * @method int|null getRefundId()
+ * @method PaymentCover setRefundId(int $id)
+ * @method float|null getAmount()
+ * @method PaymentCover setAmount(float $amount)
+ *
  */
 final class PaymentCover extends Lookup
 {
-    use InvoiceHelpers;
-    use PaymentHelpers;
-    use RefundHelpers;
+    use Common\InvoiceHelpers;
+    use Common\PaymentHelpers;
+    use Common\RefundHelpers;
 
     // =================================================================================================================
     // PROPERTIES
@@ -28,31 +43,9 @@ final class PaymentCover extends Lookup
     protected $id;
 
     /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
      * @var int
      */
     protected $paymentId;
-
-    /**
-     * @return int|null
-     */
-    public function getPaymentId(): ?int
-    {
-        return $this->paymentId;
-    }
-
-
-
-    // -----------------------------------------------------------------------------------------------------------------
 
     /**
      * @var int
@@ -60,45 +53,13 @@ final class PaymentCover extends Lookup
     protected $invoiceId;
 
     /**
-     * @return int|null
-     */
-    public function getInvoiceId(): ?int
-    {
-        return $this->invoiceId;
-    }
-
-
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
      * @var int
      */
     protected $refundId;
 
     /**
-     * @return int|null
-     */
-    public function getRefundId(): ?int
-    {
-        return $this->refundId;
-    }
-
-
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
      * @var float
      */
     protected $amount;
-
-    /**
-     * @return float|null
-     */
-    public function getAmount(): ?float
-    {
-        return $this->amount;
-    }
 
 }

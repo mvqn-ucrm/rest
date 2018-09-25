@@ -3,12 +3,23 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Lookups;
 
+use MVQN\REST\Annotations\PostAnnotation as Post;
+use MVQN\REST\Annotations\PatchAnnotation as Patch;
+
 /**
  * Class ServicePlanPeriod
  *
  * @package UCRM\REST\Endpoints
  * @author Ryan Spaeth <rspaeth@mvqn.net>
  * @final
+ *
+ * @method int|null getPeriod()
+ * @method QuoteItem setPeriod(int $period)
+ * @method float|null getPrice()
+ * @method QuoteItem setPrice(float $price)
+ * @method bool|null getEnabled()
+ * @method QuoteItem setEnabled(bool $enabled)
+ *
  */
 final class ServicePlanPeriod extends Lookup
 {
@@ -23,39 +34,13 @@ final class ServicePlanPeriod extends Lookup
     protected $period;
 
     /**
-     * @return int|null
-     */
-    public function getPeriod(): ?int
-    {
-        return $this->period;
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-    /**
      * @var float
      */
     protected $price;
 
     /**
-     * @return float|null
-     */
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-    /**
      * @var bool
      */
     protected $enabled;
-
-    /**
-     * @return bool|null
-     */
-    public function getEnabled(): ?bool
-    {
-        return $this->enabled;
-    }
 
 }

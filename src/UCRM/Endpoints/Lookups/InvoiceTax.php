@@ -3,16 +3,24 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Lookups;
 
+use MVQN\REST\Annotations\PostAnnotation as Post;
+use MVQN\REST\Annotations\PatchAnnotation as Patch;
+
 /**
  * Class InvoiceTax
  *
  * @package UCRM\REST\Endpoints
  * @author Ryan Spaeth <rspaeth@mvqn.net>
  * @final
+ *
+ * @method string|null getName()
+ * @method InvoiceTax setName(string $name)
+ * @method float|null getTotalValue()
+ * @method InvoiceTax setTotalValue(float $value)
+ *
  */
 final class InvoiceTax extends Lookup
 {
-
     // =================================================================================================================
     // PROPERTIES
     // -----------------------------------------------------------------------------------------------------------------
@@ -23,28 +31,8 @@ final class InvoiceTax extends Lookup
     protected $name;
 
     /**
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
      * @var float
      */
     protected $totalValue;
-
-    /**
-     * @return float|null
-     */
-    public function getTotalValue(): ?float
-    {
-        return $this->totalValue;
-    }
 
 }

@@ -13,5 +13,4 @@ use MVQN\REST\RestObject;
  */
 abstract class Lookup extends RestObject
 {
-
 }

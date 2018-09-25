@@ -9,10 +9,13 @@ namespace MVQN\REST\UCRM\Endpoints\Lookups;
  * @package UCRM\REST\Endpoints
  * @author Ryan Spaeth <rspaeth@mvqn.net>
  * @final
+ *
+ * @method string|null getAccountNumber()
+ * @method ClientBankAccount setAccountNumber(string $number)
+ *
  */
 final class ClientBankAccount extends Lookup
 {
-
     // =================================================================================================================
     // PROPERTIES
     // -----------------------------------------------------------------------------------------------------------------
@@ -21,23 +24,4 @@ final class ClientBankAccount extends Lookup
      * @var string
      */
     protected $accountNumber;
-
-    /**
-     * @return string
-     */
-    public function getAccountNumber(): string
-    {
-        return $this->accountNumber;
-    }
-
-    /**
-     * @param string $value
-     * @return ClientBankAccount Returns the ClientBankAccount instance, for method chaining purposes.
-     */
-    public function setAccountNumber(string $value): ClientBankAccount
-    {
-        $this->accountNumber = $value;
-        return $this;
-    }
-
 }

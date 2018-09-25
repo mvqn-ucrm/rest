@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Lookups;
 
+use MVQN\REST\Annotations\PostAnnotation as Post;
+use MVQN\REST\Annotations\PatchAnnotation as Patch;
+
 /**
  * Class TicketAttachment
  *
@@ -22,7 +25,6 @@ namespace MVQN\REST\UCRM\Endpoints\Lookups;
  */
 final class TicketAttachment extends Lookup
 {
-
     // =================================================================================================================
     // PROPERTIES
     // -----------------------------------------------------------------------------------------------------------------

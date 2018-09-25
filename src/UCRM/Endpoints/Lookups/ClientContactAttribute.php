@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Lookups;
 
+use MVQN\REST\Annotations\PostAnnotation as Post;
+use MVQN\REST\Annotations\PatchAnnotation as Patch;
+
 use MVQN\REST\UCRM\Endpoints\Helpers\Common\ClientHelpers;
 
 /**
@@ -11,6 +14,20 @@ use MVQN\REST\UCRM\Endpoints\Helpers\Common\ClientHelpers;
  * @package UCRM\REST\Endpoints
  * @author Ryan Spaeth <rspaeth@mvqn.net>
  * @final
+ *
+ * @method int|null getId()
+ * @method ClientContactAttribute setId(int $id)
+ * @method int|null getClientId()
+ * @method ClientContactAttribute setClientId(int $id)
+ * @method string|null getName()
+ * @method ClientContactAttribute setName(string $name)
+ * @method string|null getKey()
+ * @method ClientContactAttribute setKey(string $key)
+ * @method string|null getValue()
+ * @method ClientContactAttribute setValue(string $value)
+ * @method int|null getCustomAttributeId()
+ * @method ClientContactAttribute setCustomAttributeId(int $id)
+ *
  */
 final class ClientContactAttribute extends Lookup
 {
@@ -26,33 +43,9 @@ final class ClientContactAttribute extends Lookup
     protected $id;
 
     /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
      * @var int
      */
     protected $clientId;
-
-    /**
-     * @return int|null
-     */
-    public function getClientId(): ?int
-    {
-        return $this->clientId;
-    }
-
-
-
-    // -----------------------------------------------------------------------------------------------------------------
 
     /**
      * @var string
@@ -60,84 +53,22 @@ final class ClientContactAttribute extends Lookup
     protected $name;
 
     /**
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
      * @var string
      */
     protected $key;
 
     /**
-     * @return string|null
-     */
-    public function getKey(): ?string
-    {
-        return $this->key;
-    }
-
-
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
      * @var string
-     * @post
-     * @patch
+     * @Post
+     * @Patch
      */
     protected $value;
 
     /**
-     * @return string|null
-     */
-    public function getValue(): ?string
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param string $value
-     * @return ClientContactAttribute Returns the ClientContactAttribute instance, for method chaining purposes.
-     */
-    public function setValue(string $value): ClientContactAttribute
-    {
-        $this->value = $value;
-        return $this;
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
      * @var int
-     * @post
-     * @patch
+     * @Post
+     * @Patch
      */
     protected $customAttributeId;
-
-    /**
-     * @return int|null
-     */
-    public function getCustomAttributeId(): ?int
-    {
-        return $this->customAttributeId;
-    }
-
-    /**
-     * @param string $value
-     * @return ClientContactAttribute Returns the ClientContactAttribute instance, for method chaining purposes.
-     */
-    public function setCustomAttributeId(string $value): ClientContactAttribute
-    {
-        $this->customAttributeId = $value;
-        return $this;
-    }
 
 }
