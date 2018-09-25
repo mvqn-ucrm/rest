@@ -92,7 +92,7 @@ class _07_ServiceDeviceTests extends \PHPUnit\Framework\TestCase
     {
         /** @var Service $service */
         $service = Service::getById(2);
-        $device = Device::getById(1);
+        //$device = Device::getById(1);
 
         /** @var DeviceInterface $deviceInterface */
         $deviceInterface = DeviceInterface::getById(1);
@@ -121,8 +121,8 @@ class _07_ServiceDeviceTests extends \PHPUnit\Framework\TestCase
         echo $serviceDevice."\n";
         echo "\n";
 
-        $macAddress = "1234567890AB";
-        $ipRange = [ "192.168.1.23" ];
+        //$macAddress = "1234567890AB";
+        //$ipRange = [ "192.168.1.23" ];
 
         //$serviceDevice->setMacAddress($macAddress);
         //$serviceDevice->setIpRange($ipRange);

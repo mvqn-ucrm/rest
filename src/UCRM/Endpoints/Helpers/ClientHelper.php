@@ -3,10 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Collections
-use MVQN\REST\UCRM\Endpoints\Collections\ClientCollection;
-
-// Endpoints
+use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\Client;
 use MVQN\REST\UCRM\Endpoints\Organization;
 
@@ -159,7 +156,7 @@ trait ClientHelper
     // -----------------------------------------------------------------------------------------------------------------
 
     /**
-     * Creates the minimal Commericial Client to be used as a starting point for a new Client.
+     * Creates the minimal Commercial Client to be used as a starting point for a new Client.
      *
      * @param string $companyName The company name of this Commercial Client.
      * @return Client Returns a partially generated Client for further use before insertion.
@@ -183,7 +180,7 @@ trait ClientHelper
     }
 
     /**
-     * Creates the minimal Commericial Client (Lead) to be used as a starting point for a new Client.
+     * Creates the minimal Commercial Client (Lead) to be used as a starting point for a new Client.
      *
      * @param string $companyName The company name of this Commercial Client.
      * @return Client Returns a partially generated Client for further use before insertion.
@@ -232,18 +229,15 @@ trait ClientHelper
      *
      * @param string $key The Custom Attribute Key for which to search, will be converted to camel case as needed.
      * @param string $value The Custom Attribute Value for which to search.
-     * @return ClientCollection Returns a collection of Clients matching the given criteria.
+     * @return Collection Returns a collection of Clients matching the given criteria.
      *
      * @throws \Exception
      */
-    public static function getByCustomAttribute(string $key, string $value): ClientCollection
+    public static function getByCustomAttribute(string $key, string $value): Collection
     {
         // TODO: Determine if this is ALWAYS the case!
         $key = lcfirst($key);
-
-        /** @var ClientCollection $clients */
-        $clients = Client::get("", [], [ "customAttributeKey" => $key, "customAttributeValue" => $value ]);
-        return new ClientCollection($clients->elements());
+        return Client::get("", [], [ "customAttributeKey" => $key, "customAttributeValue" => $value ]);
     }
 
     // =================================================================================================================

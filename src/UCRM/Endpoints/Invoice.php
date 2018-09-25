@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
+use MVQN\Collections\Collection;
 use MVQN\REST\Endpoints\EndpointObject;
 use MVQN\REST\Annotations\EndpointAnnotation as Endpoint;
 use MVQN\REST\Annotations\PostAnnotation as Post;
@@ -11,9 +12,6 @@ use MVQN\REST\Annotations\PatchAnnotation as Patch;
 use MVQN\REST\Annotations\PatchRequiredAnnotation as PatchRequired;
 use MVQN\REST\Annotations\KeepNullElementsAnnotation as KeepNullElements;
 
-use MVQN\REST\UCRM\Endpoints\Collections\InvoiceItemCollection;
-use MVQN\REST\UCRM\Endpoints\Collections\InvoiceTaxCollection;
-use MVQN\REST\UCRM\Endpoints\Collections\PaymentCoverCollection;
 use MVQN\REST\UCRM\Endpoints\Helpers\InvoiceHelper;
 use MVQN\REST\UCRM\Endpoints\Lookups\InvoiceItem;
 use MVQN\REST\UCRM\Endpoints\Lookups\InvoiceTax;
@@ -387,19 +385,19 @@ final class Invoice extends EndpointObject
     protected $items;
 
     /**
-     * @return InvoiceItemCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getItems(): InvoiceItemCollection
+    public function getItems(): Collection
     {
-        return new InvoiceItemCollection($this->items);
+        return new Collection(InvoiceItem::class, $this->items);
     }
 
     /**
-     * @param InvoiceItemCollection $value
+     * @param Collection $value
      * @return Invoice
      */
-    public function setItems(InvoiceItemCollection $value): Invoice
+    public function setItems(Collection $value): Invoice
     {
         $this->items = $value->elements();
         return $this;
@@ -426,12 +424,12 @@ final class Invoice extends EndpointObject
     protected $taxes;
 
     /**
-     * @return InvoiceTaxCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getTaxes(): InvoiceTaxCollection
+    public function getTaxes(): Collection
     {
-        return new InvoiceTaxCollection($this->taxes);
+        return new Collection(InvoiceTax::class, $this->taxes);
     }
 
     /**
@@ -460,12 +458,12 @@ final class Invoice extends EndpointObject
     protected $paymentCovers;
 
     /**
-     * @return PaymentCoverCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getPaymentCovers(): PaymentCoverCollection
+    public function getPaymentCovers(): Collection
     {
-        return new PaymentCoverCollection($this->paymentCovers);
+        return new Collection(PaymentCover::class, $this->paymentCovers);
     }
 
     /**

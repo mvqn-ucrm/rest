@@ -3,10 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Collections
-use MVQN\REST\UCRM\Endpoints\Collections\CurrencyCollection;
-
-// Endpoints
+use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\Currency;
 
 /**
@@ -31,36 +28,18 @@ trait CurrencyHelper
 
     /**
      * @param string $name
-     * @return CurrencyCollection
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection
+     * @throws \Exception
      */
-    public static function getByName(string $name): CurrencyCollection
+    public static function getByName(string $name): Collection
     {
-        $currencies = Currency::get();
-
-        /** @var CurrencyCollection $currencies */
-        $currencies = $currencies->where("name", $name);
-        return new CurrencyCollection($currencies->elements());
+        return Currency::get()->where("name", $name);
     }
 
     /**
      * @param string $code
      * @return Currency|null
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public static function getByCode(string $code): ?Currency
     {
@@ -73,23 +52,12 @@ trait CurrencyHelper
 
     /**
      * @param string $symbol
-     * @return CurrencyCollection
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection
+     * @throws \Exception
      */
-    public static function getBySymbol(string $symbol): CurrencyCollection
+    public static function getBySymbol(string $symbol): Collection
     {
-        $currencies = Currency::get();
-
-        /** @var CurrencyCollection $currencies */
-        $currencies = $currencies->where("symbol", $symbol);
-        return new CurrencyCollection($currencies->elements());
+        return Currency::get()->where("symbol", $symbol);
     }
 
     // =================================================================================================================

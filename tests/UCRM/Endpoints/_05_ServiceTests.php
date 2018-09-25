@@ -5,8 +5,6 @@ namespace MVQN\REST\UCRM\Endpoints;
 
 use MVQN\REST\RestClient;
 
-use MVQN\REST\UCRM\Endpoints\Lookups\ClientContact;
-
 require_once __DIR__ . "/TestFunctions.php";
 
 class _05_ServiceTests extends \PHPUnit\Framework\TestCase
@@ -80,7 +78,7 @@ class _05_ServiceTests extends \PHPUnit\Framework\TestCase
     {
         $service = new Service();
         $service
-            // MUTS BE SET!!!
+            // MUST BE SET!!!
             ->setClientId(1)
 
             // --- GENERAL ---
@@ -96,7 +94,7 @@ class _05_ServiceTests extends \PHPUnit\Framework\TestCase
             //->setPrice()
             // * Active from
             ->setActiveFrom(new \DateTime("01/01/2019"))
-            // * Block service IPs until the service is acivated - TODO: Not seeing this option in API!
+            // * Block service IPs until the service is activated - TODO: Not seeing this option in API!
             // * Active to (Do not set, if indefinite service is desired)
             //->setActiveTo(new \DateTime("12/31/2019"))
 
@@ -180,7 +178,7 @@ class _05_ServiceTests extends \PHPUnit\Framework\TestCase
         $client = Client::getById(1);
 
         // Clear all non-required properties.
-        $client->minimal("patch");
+        //$client->minimal("patch");
 
         // Update any setting here...
         $name = "Worthen".rand(0, 9);

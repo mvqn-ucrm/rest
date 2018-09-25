@@ -3,15 +3,8 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-use MVQN\Annotations\AnnotationReaderException;
-use MVQN\Collections\CollectionException;
-use MVQN\Common\{ArraysException, PatternsException};
-
-use MVQN\REST\UCRM\Endpoints\EndpointException;
-use MVQN\REST\RestClientException;
-use MVQN\REST\RestObjectException;
-
-use MVQN\REST\UCRM\Endpoints\{Invoice, Collections\InvoiceCollection};
+use MVQN\Collections\Collection;
+use MVQN\REST\UCRM\Endpoints\Invoice;
 use MVQN\REST\UCRM\Endpoints\Lookups\InvoiceItem;
 
 /**
@@ -74,102 +67,54 @@ trait InvoiceHelper
 
     /**
      * @param int $clientId The Client ID for which to match Invoices.
-     * @return InvoiceCollection Returns a collection of Invoices that belong to the specified Client ID.
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection Returns a collection of Invoices that belong to the specified Client ID.
+     * @throws \Exception
      */
-    public static function getByClientId(int $clientId): InvoiceCollection
+    public static function getByClientId(int $clientId): Collection
     {
-        /** @var InvoiceCollection $invoices */
-        $invoices = Invoice::get("", [], [ "clientId" => $clientId ]);
-
-        return new InvoiceCollection($invoices->elements());
+        return Invoice::get("", [], [ "clientId" => $clientId ]);
     }
 
     /**
      * @param \DateTime $date The Creation Date for which to match Invoices.
-     * @return InvoiceCollection Returns a collection of Invoices created on the specified date.
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection Returns a collection of Invoices created on the specified date.
+     * @throws \Exception
      */
-    public static function getByCreatedDate(\DateTime $date): InvoiceCollection
+    public static function getByCreatedDate(\DateTime $date): Collection
     {
-        /** @var InvoiceCollection $invoices */
-        $invoices = Invoice::get("", [], [ "createdDateFrom" => $date->format("Y-m-d"),
+        return Invoice::get("", [], [ "createdDateFrom" => $date->format("Y-m-d"),
             "createdDateTo" => $date->format("Y-m-d") ]);
-
-        return new InvoiceCollection($invoices->elements());
     }
 
     /**
      * @param \DateTime $from The Creation Date from which to start matching Invoices.
      * @param \DateTime $to The Creation Date from which to stop matching Invoices.
-     * @return InvoiceCollection Returns a collection of Invoices created between the specified dates.
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection Returns a collection of Invoices created between the specified dates.
+     * @throws \Exception
      */
-    public static function getByCreatedDateBetween(\DateTime $from, \DateTime $to): InvoiceCollection
+    public static function getByCreatedDateBetween(\DateTime $from, \DateTime $to): Collection
     {
-        /** @var InvoiceCollection $invoices */
-        $invoices = Invoice::get("", [], [ "createdDateFrom" => $from->format("Y-m-d"),
+        return Invoice::get("", [], [ "createdDateFrom" => $from->format("Y-m-d"),
             "createdDateTo" => $to->format("Y-m-d") ]);
-
-        return new InvoiceCollection($invoices->elements());
     }
 
     /**
      * @param int ...$statuses A list of possible statuses for which to match Invoices.
-     * @return InvoiceCollection Returns a collection of Invoices that have any of the statuses specified.
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection Returns a collection of Invoices that have any of the statuses specified.
+     * @throws \Exception
      */
-    public static function getByStatuses(int ...$statuses): InvoiceCollection
+    public static function getByStatuses(int ...$statuses): Collection
     {
         // EXAMPLE: ...?statuses[]=1&statuses[]=3
-
         $statusesString = implode("&statuses[]=", $statuses);
 
-        /** @var InvoiceCollection $invoices */
-        $invoices = Invoice::get("", [], [ "statuses[]" => $statusesString ]);
-
-        return new InvoiceCollection($invoices->elements());
+        return Invoice::get("", [], [ "statuses[]" => $statusesString ]);
     }
 
     /**
      * @param string $number The Number for which to match an Invoice.
      * @return Invoice|null Returns an Invoice that matches the specified number, or NULL if no matches.
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public static function getByNumber(string $number): ?Invoice
     {
@@ -177,30 +122,18 @@ trait InvoiceHelper
 
         /** @var Invoice $invoice */
         $invoice = Invoice::get("", [], [ "number" => $number ])->first();
-
         return $invoice;
     }
 
     /**
      * @param bool $overdue If TRUE, matches all overdue Invoices; FALSE, matches all non-overdue Invoices.
-     * @return InvoiceCollection Returns a collection of Invoices that are flagged with the sopecified overdue status.
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection Returns a collection of Invoices that are flagged with the specified overdue status.
+     * @throws \Exception
      */
-    public static function getByOverdue(bool $overdue): InvoiceCollection
+    public static function getByOverdue(bool $overdue): Collection
     {
         // EXAMPLE: ...?overdue=0|1
-
-        /** @var InvoiceCollection $invoices */
-        $invoices = Invoice::get("", [], [ "overdue" => $overdue ? 1 : 0 ]);
-
-        return new InvoiceCollection($invoices->elements());
+        return Invoice::get("", [], [ "overdue" => $overdue ? 1 : 0 ]);
     }
 
     // =================================================================================================================
@@ -221,14 +154,7 @@ trait InvoiceHelper
 
     /**
      * @return Invoice
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws RestObjectException
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public function send(): Invoice
     {

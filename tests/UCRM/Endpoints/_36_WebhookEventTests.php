@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
-use MVQN\Annotations\AnnotationReader;
 use MVQN\REST\RestClient;
 
 require_once __DIR__ . "/TestFunctions.php";

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
-use MVQN\Collections\Collection;
-use MVQN\REST\UCRM\Endpoints\Collections\ServicePlanCollection;
 use MVQN\REST\RestClient;
 
 require_once __DIR__ . "/TestFunctions.php";
@@ -85,10 +83,10 @@ class _20_ServicePlanTests extends \PHPUnit\Framework\TestCase
     public function testGetByName()
     {
         /** @var Organization $organization */
-        $organization = Organization::getByName("Mason Valley Quicknet");
+        $organization = Organization::getByName("Mason Valley Quicknet")->first();
         $this->assertEquals("Mason Valley Quicknet", $organization->getName());
 
-        echo ">>> Organization::getByName('Mason Valley Quickney')\n";
+        echo ">>> Organization::getByName('Mason Valley Quicknet')\n";
         echo $organization."\n";
         echo "\n";
     }

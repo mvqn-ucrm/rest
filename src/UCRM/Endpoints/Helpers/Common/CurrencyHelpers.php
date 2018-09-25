@@ -25,6 +25,8 @@ trait CurrencyHelpers
     {
         if(property_exists($this, "currencyId") && $this->{"currencyId"} !== null)
             $currency = Currency::getById($this->{"currencyId"});
+        elseif(property_exists($this, "currencyCode") && $this->{"currencyCode"} !== null)
+            $currency = Currency::getByCode($this->{"currencyCode"});
 
         /** @var Currency $currency */
         return $currency;
@@ -49,7 +51,6 @@ trait CurrencyHelpers
      */
     public function setCurrencyByCode(string $code): self
     {
-        /** @var Currency $currency */
         $currency = Currency::getByCode($code);
         $this->{"currencyId"} = $currency->getId();
 

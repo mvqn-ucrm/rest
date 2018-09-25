@@ -3,16 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Core
-use MVQN\Annotations\AnnotationReaderException;
-
-// Exceptions
-use MVQN\REST\RestObjectException;
-
-// Lookups
 use MVQN\REST\UCRM\Endpoints\Lookups\PaymentCover;
-
-// Endpoints
 use MVQN\REST\UCRM\Endpoints\Refund;
 
 /**
@@ -33,9 +24,7 @@ trait RefundHelper
     /**
      * @param PaymentCover $paymentCover
      * @return Refund
-     * @throws AnnotationReaderException
-     * @throws RestObjectException
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public function addPaymentCover(PaymentCover $paymentCover): Refund
     {

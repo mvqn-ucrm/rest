@@ -25,12 +25,15 @@ trait WebhookEventHelper
     // READ METHODS
     // -----------------------------------------------------------------------------------------------------------------
 
-
+    /**
+     * @param string $uuid
+     * @return WebhookEvent|null
+     * @throws \Exception
+     */
     public static function getByUuid(string $uuid): ?WebhookEvent
     {
-        $event = WebhookEvent::get("/webhook-events/:uuid", [ "uuid" => $uuid ])->first();
-
         /** @var WebhookEvent $event */
+        $event = WebhookEvent::get("/webhook-events/:uuid", [ "uuid" => $uuid ])->first();
         return $event;
     }
 
@@ -45,5 +48,4 @@ trait WebhookEventHelper
     // =================================================================================================================
     // EXTRA FUNCTIONS
     // -----------------------------------------------------------------------------------------------------------------
-
 }

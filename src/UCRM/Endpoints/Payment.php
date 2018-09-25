@@ -56,6 +56,7 @@ use MVQN\REST\UCRM\Endpoints\Lookups\PaymentCover;
 final class Payment extends EndpointObject
 {
     use PaymentHelper;
+    use Helpers\Common\ClientHelpers;
 
     // =================================================================================================================
     // ENUMS

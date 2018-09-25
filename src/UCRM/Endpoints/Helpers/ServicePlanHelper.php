@@ -3,14 +3,9 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-
-use MVQN\Annotations\AnnotationReaderException;
-use MVQN\Collections\CollectionException;
-use MVQN\Common\ArraysException;
-use MVQN\Common\PatternsException;
-use MVQN\REST\UCRM\Endpoints\{EndpointException, Helpers\Common\OrganizationHelpers, ServicePlan};
-use MVQN\REST\UCRM\Endpoints\Collections\ServicePlanCollection;
-use MVQN\REST\RestClientException;
+use MVQN\Collections\Collection;
+use MVQN\REST\UCRM\Endpoints\Helpers\Common\OrganizationHelpers;
+use MVQN\REST\UCRM\Endpoints\ServicePlan;
 
 /**
  * Trait ServicePlanHelper
@@ -28,23 +23,12 @@ trait ServicePlanHelper
 
     /**
      * @param string $name
-     * @return ServicePlanCollection
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection
+     * @throws \Exception
      */
-    public static function getByName(string $name): ServicePlanCollection
+    public static function getByName(string $name): Collection
     {
-        $servicePlans = ServicePlan::get();
-        $servicePlans = new ServicePlanCollection($servicePlans);
-
-        /** @var ServicePlanCollection $servicePlanList */
-        $servicePlanList = $servicePlans->where("name", $name);
-        return new ServicePlanCollection($servicePlanList->elements());
+        return ServicePlan::get()->where("name", $name);
     }
 
 

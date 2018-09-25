@@ -3,10 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Collections
-use MVQN\REST\UCRM\Endpoints\Collections\DeviceInterfaceCollection;
-
-// Endpoints
+use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\Device;
 use MVQN\REST\UCRM\Endpoints\DeviceInterface;
 
@@ -34,20 +31,12 @@ trait DeviceInterfaceHelper
 
     /**
      * @param Device $device
-     * @return DeviceInterfaceCollection
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection
+     * @throws \Exception
      */
-    public function getByDevice(Device $device): DeviceInterfaceCollection
+    public function getByDevice(Device $device): Collection
     {
-        $devicesInterfaces = DeviceInterface::get("", [ "deviceId" => $device->getId() ]);
-
-        return new DeviceInterfaceCollection($devicesInterfaces->elements());
+        return DeviceInterface::get("", [ "deviceId" => $device->getId() ]);
     }
 
     // =================================================================================================================

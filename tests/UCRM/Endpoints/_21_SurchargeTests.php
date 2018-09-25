@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
-use MVQN\Collections\Collection;
-use MVQN\REST\UCRM\Endpoints\Collections\ServicePlanCollection;
-use MVQN\REST\UCRM\Endpoints\Collections\SurchargeCollection;
 use MVQN\REST\RestClient;
 
 require_once __DIR__ . "/TestFunctions.php";

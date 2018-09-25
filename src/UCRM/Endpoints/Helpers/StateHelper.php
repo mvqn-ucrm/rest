@@ -3,15 +3,9 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-use MVQN\Annotations\AnnotationReaderException;
-use MVQN\Collections\CollectionException;
-use MVQN\Common\{ArraysException, PatternsException};
-
 use MVQN\Collections\Collection;
-use MVQN\REST\RestClientException;
-
-use MVQN\REST\UCRM\Endpoints\{Country,State};
-use MVQN\REST\UCRM\Endpoints\EndpointException;
+use MVQN\REST\UCRM\Endpoints\Country;
+use MVQN\REST\UCRM\Endpoints\State;
 
 /**
  * Trait StateHelper
@@ -27,38 +21,24 @@ trait StateHelper
     // OBJECT METHODS
     // -----------------------------------------------------------------------------------------------------------------
 
-    // NO OBJECT METHODS REQUIRED
-
     // =================================================================================================================
     // CREATE METHODS
     // -----------------------------------------------------------------------------------------------------------------
-
-    // STANDARD CREATE METHODS USED
 
     // =================================================================================================================
     // READ METHODS
     // -----------------------------------------------------------------------------------------------------------------
 
-    // STANDARD READ METHODS USED
-
-    // -----------------------------------------------------------------------------------------------------------------
-
     /**
      * @param Country $country
      * @param string $name
-     * @return null|State
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return State|null
+     * @throws \Exception
      */
     public static function getByName(Country $country, string $name): ?State
     {
         if($country === null)
-            throw new EndpointException("Cannot call State->getByName() without providing a valid Country!");
+            throw new \Exception("Cannot call State->getByName() without providing a valid Country!");
 
         /** @var Collection $states */
         $states = $country->getStates();
@@ -71,19 +51,13 @@ trait StateHelper
     /**
      * @param Country $country
      * @param string $code
-     * @return null|State
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return State|null
+     * @throws \Exception
      */
     public static function getByCode(Country $country, string $code): ?State
     {
         if($country === null)
-            throw new EndpointException("Cannot call State->getByName() without providing a valid Country!");
+            throw new \Exception("Cannot call State->getByName() without providing a valid Country!");
 
         /** @var Collection $states */
         $states = $country->getStates();
@@ -97,19 +71,11 @@ trait StateHelper
     // UPDATE METHODS
     // -----------------------------------------------------------------------------------------------------------------
 
-    // NO UPDATE ENDPOINTS
-
     // =================================================================================================================
     // DELETE METHODS
     // -----------------------------------------------------------------------------------------------------------------
 
-    // NO DELETE ENDPOINTS
-
     // =================================================================================================================
     // EXTRA FUNCTIONS
     // -----------------------------------------------------------------------------------------------------------------
-
-    // NO EXTRA FUNCTIONS AT THIS TIME
-
-
 }

@@ -55,7 +55,7 @@ class _11_DeviceInterfaceTests extends \PHPUnit\Framework\TestCase
         $deviceInterface = DeviceInterface::get("", ["deviceId" => $device->getId()]);
         $this->assertNotNull($deviceInterface);
 
-        echo ">>> DeviceIterface::get('', [ 'deviceId' => \$device->getId() ])\n";
+        echo ">>> DeviceInterface::get('', [ 'deviceId' => \$device->getId() ])\n";
         echo $deviceInterface."\n";
         echo "\n";
     }

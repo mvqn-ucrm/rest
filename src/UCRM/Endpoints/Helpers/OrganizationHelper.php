@@ -3,10 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Collections
-use MVQN\REST\UCRM\Endpoints\Collections\OrganizationCollection;
-
-// Endpoints
+use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\Organization;
 
 /**
@@ -35,28 +32,22 @@ trait OrganizationHelper
 
     /**
      * @param string $name
-     * @return OrganizationCollection
+     * @return Collection
      * @throws \Exception
      */
-    public static function getByName(string $name): OrganizationCollection
+    public static function getByName(string $name): Collection
     {
-        $organizations = Organization::get();
-
-        /** @var OrganizationCollection $organizations */
-        $organizations = $organizations->where("name", $name);
-        return new OrganizationCollection($organizations->elements());
+        return Organization::get()->where("name", $name);
     }
 
     /**
-     * @return null|Organization
+     * @return Organization|null
      * @throws \Exception
      */
     public static function getByDefault(): ?Organization
     {
-        $organizations = Organization::get();
-
         /** @var Organization $organization */
-        $organization = $organizations->where("selected", true)->first();
+        $organization = Organization::get()->where("selected", true)->first();
         return $organization;
     }
 
@@ -71,5 +62,4 @@ trait OrganizationHelper
     // =================================================================================================================
     // EXTRA FUNCTIONS
     // -----------------------------------------------------------------------------------------------------------------
-
 }

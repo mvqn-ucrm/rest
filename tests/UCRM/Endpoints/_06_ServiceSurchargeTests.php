@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
-use MVQN\Collections\Collection;
-use MVQN\REST\UCRM\Endpoints\Collections\ServicePlanCollection;
-use MVQN\REST\UCRM\Endpoints\Collections\SurchargeCollection;
 use MVQN\REST\RestClient;
 
 require_once __DIR__ . "/TestFunctions.php";
@@ -103,7 +100,7 @@ class _06_ServiceSurchargeTests extends \PHPUnit\Framework\TestCase
         $serviceSurcharge
             ->setServiceId($service->getId())
             ->setSurchargeId($surcharge->getId())
-            ->setInvoiceLabel("Testing Srucharge from API")
+            ->setInvoiceLabel("Testing Surcharge from API")
             //->setPrice() // DEFAULT
             ->setTaxable(false);
 
@@ -132,7 +129,7 @@ class _06_ServiceSurchargeTests extends \PHPUnit\Framework\TestCase
 
         $serviceSurcharge
             //->setSurchargeId($surcharge->getId())
-            //->setInvoiceLabel("Testing Srucharge from API")
+            //->setInvoiceLabel("Testing Surcharge from API")
             ->setPrice($price);
 
         //$this->markTestSkipped("Skipping to prevent numerous entries into the UCRM.");

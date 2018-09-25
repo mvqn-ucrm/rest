@@ -3,10 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Collections
-use MVQN\REST\UCRM\Endpoints\Collections\ClientLogCollection;
-
-// Endpoints
+use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\ClientLog;
 
 /**
@@ -36,44 +33,26 @@ trait ClientLogHelper
      * Sends an HTTP GET Request using the calling class's annotated information, for objects, given the Client ID.
      *
      * @param int $clientId The Client ID for which to filter the Client Logs.
-     * @return ClientLogCollection Returns a collection of Client Logs, belonging to the specified Client ID.
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection Returns a collection of Client Logs, belonging to the specified Client ID.
+     * @throws \Exception
      */
-    public static function getByClientId(int $clientId): ClientLogCollection
+    public static function getByClientId(int $clientId): Collection
     {
-        /** @var ClientLogCollection $clientLogs */
-        $clientLogs = ClientLog::get("", [], [ "clientId" => $clientId ]);
-        return $clientLogs;
+        return ClientLog::get("", [], [ "clientId" => $clientId ]);
     }
 
     /**
      * Sends an HTTP GET Request using the calling class's annotated information, for objects, given the Creation Date.
      *
      * @param \DateTime $date The date for which to retrieve all Client Logs.
-     * @return ClientLogCollection Returns a collection of Client Logs, created on the specified date.
+     * @return Collection Returns a collection of Client Logs, created on the specified date.
      *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @throws \Exception
      */
-    public static function getByCreatedDate(\DateTime $date): ClientLogCollection
+    public static function getByCreatedDate(\DateTime $date): Collection
     {
-        /** @var ClientLogCollection $clientLogs */
-        $clientLogs = ClientLog::get("", [], [ "createdDateFrom" => $date->format("Y-m-d"),
+        return ClientLog::get("", [], [ "createdDateFrom" => $date->format("Y-m-d"),
             "createdDateTo" => $date->format("Y-m-d") ]);
-
-        return new ClientLogCollection($clientLogs->elements());
     }
 
     /**
@@ -81,23 +60,13 @@ trait ClientLogHelper
      *
      * @param \DateTime $from The starting date for which to retrieve all Client Logs.
      * @param \DateTime $to The ending date for which to retrieve all Client Logs.
-     * @return ClientLogCollection Returns a collection of Client Logs, created between the specified dates.
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection Returns a collection of Client Logs, created between the specified dates.
+     * @throws \Exception
      */
-    public static function getByCreatedDateBetween(\DateTime $from, \DateTime $to): ClientLogCollection
+    public static function getByCreatedDateBetween(\DateTime $from, \DateTime $to): Collection
     {
-        /** @var ClientLogCollection $clientLogs */
-        $clientLogs = ClientLog::get("", [], [ "createdDateFrom" => $from->format("Y-m-d"),
+        return ClientLog::get("", [], [ "createdDateFrom" => $from->format("Y-m-d"),
             "createdDateTo" => $to->format("Y-m-d") ]);
-
-        return new ClientLogCollection($clientLogs->elements());
     }
 
     // =================================================================================================================

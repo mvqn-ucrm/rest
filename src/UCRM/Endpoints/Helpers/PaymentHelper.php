@@ -3,21 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Core
-use MVQN\Annotations\AnnotationReaderException;
-use MVQN\Collections\CollectionException;
-use MVQN\Common\ArraysException;
-use MVQN\Common\PatternsException;
-
-// Exceptions
-use MVQN\REST\UCRM\Endpoints\EndpointException;
-use MVQN\REST\RestClientException;
-use MVQN\REST\RestObjectException;
-
-// Collections
-use MVQN\REST\UCRM\Endpoints\Collections\InvoiceCollection;
-
-// Endpoints
+use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\Invoice;
 use MVQN\REST\UCRM\Endpoints\Payment;
 
@@ -37,13 +23,7 @@ trait PaymentHelper
 
     /**
      * @return Invoice|null
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public function getInvoice(): ?Invoice
     {
@@ -71,17 +51,10 @@ trait PaymentHelper
     // -----------------------------------------------------------------------------------------------------------------
 
     /**
-     * @return InvoiceCollection
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection
+     * @throws \Exception
      */
-    public function getInvoices(): InvoiceCollection
+    public function getInvoices(): Collection
     {
         if($this->invoiceIds !== null && $this->invoiceIds !== [])
         {
@@ -91,17 +64,17 @@ trait PaymentHelper
             foreach($this->invoiceIds as $id)
                 $invoices = $allInvoices->where("id", $id);
 
-            return new InvoiceCollection($invoices);
+            return new Collection(Invoice::class, $invoices);
         }
 
-        return new InvoiceCollection();
+        return new Collection(Invoice::class);
     }
 
     /**
-     * @param InvoiceCollection $invoices
+     * @param Collection $invoices
      * @return Payment
      */
-    public function setInvoices(InvoiceCollection $invoices): Payment
+    public function setInvoices(Collection $invoices): Payment
     {
         if($invoices->type() === Invoice::class && $invoices->count() > 0)
         {
@@ -145,14 +118,7 @@ trait PaymentHelper
 
     /**
      * @return Payment
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws RestObjectException
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public function sendReceipt(): Payment
     {

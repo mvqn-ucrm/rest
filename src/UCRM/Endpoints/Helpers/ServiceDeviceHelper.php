@@ -3,21 +3,8 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Core
-use MVQN\Annotations\AnnotationReaderException;
-use MVQN\Collections\CollectionException;
-use MVQN\Common\ArraysException;
-use MVQN\Common\PatternsException;
-
-// Exceptions
-use MVQN\REST\RestClientException;
-
-// Collections
-use MVQN\REST\UCRM\Endpoints\Collections\ServiceDeviceCollection;
-
-// Endpoints
+use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\DeviceInterface;
-use MVQN\REST\UCRM\Endpoints\EndpointException;
 use MVQN\REST\UCRM\Endpoints\Service;
 use MVQN\REST\UCRM\Endpoints\ServiceDevice;
 use MVQN\REST\UCRM\Endpoints\Vendor;
@@ -68,21 +55,12 @@ trait ServiceDeviceHelper
 
     /**
      * @param Service $service
-     * @return ServiceDeviceCollection
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection
+     * @throws \Exception
      */
-    public static function getByService(Service $service): ServiceDeviceCollection
+    public static function getByService(Service $service): Collection
     {
-        $serviceDevices = ServiceDevice::get("", [ "serviceId" => $service->getId() ]);
-
-        return new ServiceDeviceCollection($serviceDevices->elements());
+        return ServiceDevice::get("", [ "serviceId" => $service->getId() ]);
     }
 
     // =================================================================================================================
@@ -96,5 +74,4 @@ trait ServiceDeviceHelper
     // =================================================================================================================
     // EXTRA FUNCTIONS
     // -----------------------------------------------------------------------------------------------------------------
-
 }

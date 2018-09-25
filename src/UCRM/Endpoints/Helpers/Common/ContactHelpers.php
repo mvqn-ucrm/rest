@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers\Common;
 
-use MVQN\REST\UCRM\Endpoints\Collections\ClientContactCollection;
+use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\Lookups\ClientContact;
 
 
@@ -26,7 +26,7 @@ trait ContactHelpers
     public function getContactById(int $id): ?ClientContact
     {
         /** @var ClientContact $contact */
-        $contact = (new ClientContactCollection($this->{"contacts"}))->where("id", $id)->first();
+        $contact = (new Collection(ClientContact::class, $this->{"contacts"}))->where("id", $id)->first();
         return $contact;
     }
 

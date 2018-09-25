@@ -47,7 +47,7 @@ trait AddressHelpers
      * @param string $zip
      * @return AddressHelpers
      *
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public function setAddress(string $street, string $city, string $stateCode, string $countryCode, string $zip): self
     {

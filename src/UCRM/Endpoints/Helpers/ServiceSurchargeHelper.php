@@ -3,16 +3,10 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-use MVQN\Annotations\AnnotationReaderException;
-use MVQN\Common\ArraysException;
-use MVQN\Common\PatternsException;
-use MVQN\REST\UCRM\Endpoints\{Collections\ServiceSurchargeCollection,
-    EndpointException,
-    Endpoint,
-    ServiceSurcharge,
-    Service};
-use MVQN\REST\RestClientException;
-use MVQN\REST\RestObjectException;
+use MVQN\Collections\Collection;
+use MVQN\REST\Endpoints\EndpointObject;
+use MVQN\REST\UCRM\Endpoints\Service;
+use MVQN\REST\UCRM\Endpoints\ServiceSurcharge;
 
 /**
  * Trait ServiceSurchargeHelper
@@ -28,17 +22,11 @@ trait ServiceSurchargeHelper
 
     /**
      * @return ServiceSurcharge
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws RestObjectException
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public function create(): ServiceSurcharge
     {
-        /** @var Endpoint $data */
+        /** @var EndpointObject $data */
         $data = $this;
 
         /** @var ServiceSurcharge $serviceSurcharge */
@@ -47,45 +35,15 @@ trait ServiceSurchargeHelper
         return $serviceSurcharge;
     }
 
-    /**
-     * @return ServiceSurcharge
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws RestObjectException
-     * @throws \ReflectionException
-     */
-    public function update(): ServiceSurcharge
-    {
-        /** @var Endpoint $data */
-        $data = $this;
-
-        /** @var ServiceSurcharge $serviceSurcharge */
-        $serviceSurcharge = ServiceSurcharge::patch($data, [ "id" => $this->getId() ]);
-
-        return $serviceSurcharge;
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
 
     /**
      * @param Service $service
-     * @return ServiceSurchargeCollection
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \MVQN\Collections\CollectionException
-     * @throws \ReflectionException
+     * @return Collection
+     * @throws \Exception
      */
-    public static function getByService(Service $service): ServiceSurchargeCollection
+    public static function getByService(Service $service): Collection
     {
-        $surcharges = ServiceSurcharge::get("", [ "serviceId" => $service->getId() ]);
-
-        return new ServiceSurchargeCollection($surcharges->elements());
+        return ServiceSurcharge::get("", [ "serviceId" => $service->getId() ]);
     }
 
 

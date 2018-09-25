@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
+use MVQN\Collections\Collection;
 use MVQN\REST\Endpoints\EndpointObject;
 use MVQN\REST\Annotations\EndpointAnnotation as Endpoint;
 use MVQN\REST\Annotations\PostAnnotation as Post;
@@ -14,12 +15,6 @@ use MVQN\REST\UCRM\Endpoints\Lookups\ClientBankAccount;
 use MVQN\REST\UCRM\Endpoints\Lookups\ClientContact;
 use MVQN\REST\UCRM\Endpoints\Lookups\ClientContactAttribute;
 use MVQN\REST\UCRM\Endpoints\Lookups\ClientTag;
-
-use MVQN\REST\UCRM\Endpoints\Collections\ClientBankAccountCollection;
-use MVQN\REST\UCRM\Endpoints\Collections\ClientContactCollection;
-use MVQN\REST\UCRM\Endpoints\Collections\ClientContactAttributeCollection;
-use MVQN\REST\UCRM\Endpoints\Collections\ClientTagCollection;
-
 
 /**
  * Class Client
@@ -413,21 +408,20 @@ final class Client extends EndpointObject
     protected $contacts;
 
     /**
-     * @return ClientContactCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getContacts(): ClientContactCollection
+    public function getContacts(): Collection
     {
-        /** @var ClientContactCollection $contacts */
-        $contacts = new ClientContactCollection($this->contacts);
+        $contacts = new Collection(ClientContact::class, $this->contacts);
         return $contacts;
     }
 
     /**
-     * @param ClientContactCollection $values
+     * @param Collection $values
      * @return Client Returns the Client instance, for method chaining purposes.
      */
-    public function setContacts(ClientContactCollection $values): Client
+    public function setContacts(Collection $values): Client
     {
         $this->contacts = $values->elements();
         return $this;
@@ -441,21 +435,20 @@ final class Client extends EndpointObject
     protected $attributes;
 
     /**
-     * @return ClientContactAttributeCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getAttributes(): ClientContactAttributeCollection
+    public function getAttributes(): Collection
     {
-        /** @var ClientContactAttributeCollection $attributes */
-        $attributes = new ClientContactAttributeCollection($this->attributes);
+        $attributes = new Collection(ClientContactAttribute::class, $this->attributes);
         return $attributes;
     }
 
     /**
-     * @param ClientContactAttributeCollection $values
+     * @param Collection $values
      * @return Client Returns the Client instance, for method chaining purposes.
      */
-    public function setAttributes(ClientContactAttributeCollection $values): Client
+    public function setAttributes(Collection $values): Client
     {
         $this->attributes = $values->elements();
         return $this;
@@ -492,13 +485,12 @@ final class Client extends EndpointObject
     protected $bankAccounts;
 
     /**
-     * @return ClientBankAccountCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getBankAccounts(): ClientBankAccountCollection
+    public function getBankAccounts(): Collection
     {
-        /** @var ClientBankAccountCollection $bankAccounts */
-        $bankAccounts = new ClientBankAccountCollection($this->bankAccounts);
+        $bankAccounts = new Collection(ClientBankAccount::class, $this->bankAccounts);
         return $bankAccounts;
     }
 
@@ -513,13 +505,12 @@ final class Client extends EndpointObject
     protected $tags;
 
     /**
-     * @return ClientTagCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getTags(): ClientTagCollection
+    public function getTags(): Collection
     {
-        /** @var ClientTagCollection $tags */
-        $tags = new ClientTagCollection($this->tags);
+        $tags = new Collection(ClientTag::class, $this->tags);
         return $tags;
     }
 

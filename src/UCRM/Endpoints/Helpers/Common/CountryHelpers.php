@@ -49,7 +49,6 @@ trait CountryHelpers
      */
     public function setCountryByName(string $name): self
     {
-        /** @var Country $country */
         $country = Country::getByName($name);
         $this->{"countryId"} = $country->getId();
 
@@ -64,7 +63,6 @@ trait CountryHelpers
      */
     public function setCountryByCode(string $code): self
     {
-        /** @var Country $country */
         $country = Country::getByCode($code);
         $this->{"countryId"} = $country->getId();
 

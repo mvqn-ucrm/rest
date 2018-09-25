@@ -7,7 +7,6 @@ use MVQN\REST\Endpoints\EndpointObject;
 use MVQN\REST\Annotations\CachedAnnotation as Cached;
 use MVQN\REST\Annotations\EndpointAnnotation as Endpoint;
 
-
 use MVQN\REST\UCRM\Endpoints\Helpers\CountryHelper;
 
 /**

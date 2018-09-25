@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
+use MVQN\Collections\Collection;
 use MVQN\REST\Endpoints\EndpointObject;
 use MVQN\REST\Annotations\EndpointAnnotation as Endpoint;
 use MVQN\REST\Annotations\PostAnnotation as Post;
@@ -11,8 +12,6 @@ use MVQN\REST\Annotations\PatchAnnotation as Patch;
 use MVQN\REST\Annotations\PatchRequiredAnnotation as PatchRequired;
 use MVQN\REST\Annotations\KeepNullElementsAnnotation as KeepNullElements;
 
-use MVQN\REST\UCRM\Endpoints\Collections\QuoteItemCollection;
-use MVQN\REST\UCRM\Endpoints\Collections\QuoteTaxCollection;
 use MVQN\REST\UCRM\Endpoints\Helpers\QuoteHelper;
 use MVQN\REST\UCRM\Endpoints\Lookups\QuoteItem;
 use MVQN\REST\UCRM\Endpoints\Lookups\QuoteTax;
@@ -341,19 +340,19 @@ final class Quote extends EndpointObject
     protected $items;
 
     /**
-     * @return QuoteItemCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getItems(): QuoteItemCollection
+    public function getItems(): Collection
     {
-        return new QuoteItemCollection($this->items);
+        return new Collection(QuoteItem::class, $this->items);
     }
 
     /**
-     * @param QuoteItemCollection $value
+     * @param Collection $value
      * @return Quote
      */
-    public function setItems(QuoteItemCollection $value): Quote
+    public function setItems(Collection $value): Quote
     {
         $this->items = $value->elements();
         return $this;
@@ -381,12 +380,12 @@ final class Quote extends EndpointObject
     protected $taxes;
 
     /**
-     * @return QuoteTaxCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getTaxes(): QuoteTaxCollection
+    public function getTaxes(): Collection
     {
-        return new QuoteTaxCollection($this->taxes);
+        return new Collection(QuoteTax::class, $this->taxes);
     }
 
     /**

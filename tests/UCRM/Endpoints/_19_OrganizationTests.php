@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
-use MVQN\Collections\Collection;
-use MVQN\REST\UCRM\Endpoints\Collections\OrganizationCollection;
 use MVQN\REST\RestClient;
 
 require_once __DIR__ . "/TestFunctions.php";
@@ -74,11 +72,10 @@ class _19_OrganizationTests extends \PHPUnit\Framework\TestCase
 
     public function testGetByName()
     {
-        /** @var OrganizationCollection $organizations */
         $organizations = Organization::getByName("Mason Valley Quicknet");
         $this->assertNotNull($organizations);
 
-        echo ">>> Organization::getByName('Mason Valley Quickney')\n";
+        echo ">>> Organization::getByName('Mason Valley Quicknet')\n";
         echo $organizations."\n";
         echo "\n";
     }

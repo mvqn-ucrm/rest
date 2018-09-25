@@ -3,19 +3,6 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Core
-//use MVQN\Annotations\AnnotationReaderException;
-//use MVQN\Common\ArraysException;
-//use MVQN\Common\PatternsException;
-
-// Exceptions
-//use MVQN\REST\UCRM\Endpoints\EndpointException;
-//use MVQN\REST\RestClientException;
-//use MVQN\REST\RestObjectException;
-
-// Endpoints
-//use MVQN\REST\UCRM\Endpoints\Product;
-
 /**
  * Trait ProductHelper
  *
@@ -47,5 +34,4 @@ trait ProductHelper
     // =================================================================================================================
     // EXTRA FUNCTIONS
     // -----------------------------------------------------------------------------------------------------------------
-
 }

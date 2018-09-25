@@ -151,9 +151,8 @@ class _12_InvoiceTests extends \PHPUnit\Framework\TestCase
 
         echo $test."\n";
 
-        $response = RestClient::patchJSON("/invoices/4", $test);
-
-        print_r($response);
+        //$response = RestClient::patchJSON("/invoices/4", $test);
+        //print_r($response);
 
 
         //$invoice->update();

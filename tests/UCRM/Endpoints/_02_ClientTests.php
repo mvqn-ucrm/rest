@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
-use MVQN\Annotations\AnnotationReader;
 use MVQN\REST\RestClient;
 use MVQN\REST\UCRM\Endpoints\Lookups\ClientContact;
 
@@ -11,15 +10,12 @@ require_once __DIR__ . "/TestFunctions.php";
 
 class _02_ClientTests extends \PHPUnit\Framework\TestCase
 {
-
     // =================================================================================================================
     // INITIALIZATION
     // -----------------------------------------------------------------------------------------------------------------
 
     /** @var string Location of the .env file for development. */
     protected const DOTENV_PATH = __DIR__ . "/../../../";
-
-    // -----------------------------------------------------------------------------------------------------------------
 
     protected function setUp()
     {
@@ -49,18 +45,13 @@ class _02_ClientTests extends \PHPUnit\Framework\TestCase
         $this->assertTrue($test);
     }
 
-
     // =================================================================================================================
-    // CREATE METHDOS
+    // CREATE METHODS
     // -----------------------------------------------------------------------------------------------------------------
 
     public function testCreateResidential()
     {
-        //AnnotationReader::cacheDir(__DIR__."/./");
-        //$this->markTestSkipped("Skip test, as to not keep generating Clients!");
-
-        //Organization::getSelected()
-
+        $this->markTestSkipped("Skip test, as to not keep generating Clients!");
 
         $lastName = "Doe";
         $firstName = "John".rand(1, 9);
@@ -73,14 +64,21 @@ class _02_ClientTests extends \PHPUnit\Framework\TestCase
             "Yerington", "NV", "US", "89447"
         );
         //$client->setInvoiceAddress("422 Silver Star Court\nc/o Ryan Spaeth", "Yerington", "NV", "US", "89447");
-        $client->setInvoiceAddressSameAsContact(false);
+        $client->setInvoiceAddressSameAsContact(true);
 
-        //$client->setSendInvoiceByPost(true);
-        //$client->setInvoiceMaturityDays(10);
+        if(!$client->validate("post", $missing, $ignored))
+        {
+            echo "MISSING: ";
+            print_r($missing);
+            echo "\n";
+        }
 
-        //$client->resetAllInvoiceOptions();
-
-        $valid = $client->validate("post", $missing);
+        if($ignored)
+        {
+            echo "IGNORED: ";
+            print_r($ignored);
+            echo "\n";
+        }
 
         /** @var Client $inserted */
         $inserted = $client->insert();
@@ -89,14 +87,15 @@ class _02_ClientTests extends \PHPUnit\Framework\TestCase
         echo $inserted."\n";
     }
 
-    public function testCreateCommericial()
+    public function testCreateCommercial()
     {
         $this->markTestSkipped("Skip test, as to not keep generating Clients!");
 
-        $lastName = "Doe";
-        $firstName = "John".rand(1, 9);
+        //$lastName = "Doe";
+        //$firstName = "John".rand(1, 9);
         $companyName = "ACME Rockets, Inc.";
 
+        /** @var Client $inserted */
         $inserted = Client::createCommercial($companyName)->insert();
         $this->assertEquals($companyName, $inserted->getCompanyName());
 
@@ -118,6 +117,8 @@ class _02_ClientTests extends \PHPUnit\Framework\TestCase
 
     public function testInsert()
     {
+        $this->markTestSkipped("Skip test, as to not keep generating Clients!");
+
         /** @var Organization $organization */
         $organization = Organization::getByDefault();
 
@@ -292,9 +293,6 @@ class _02_ClientTests extends \PHPUnit\Framework\TestCase
         /** @var Client $client */
         $client = Client::getById(1);
 
-        // Clear all non-required properties.
-        $client->minimal("patch");
-
         // Update any setting here...
         $name = "Worthen".rand(0, 9);
         $client->setLastName($name);
@@ -304,8 +302,12 @@ class _02_ClientTests extends \PHPUnit\Framework\TestCase
         $client->resetSendInvoiceByPost();
 
         // Validate the information...
-        if($client->validate("patch", $missing))
+        if($client->validate("patch", $missing, $ignored))
         {
+            echo "IGNORED: ";
+            print_r($ignored);
+            echo "\n";
+
             /** @var Client $updated */
             $updated = $client->update();
             $this->assertEquals($name ,$updated->getLastName());
@@ -313,7 +315,7 @@ class _02_ClientTests extends \PHPUnit\Framework\TestCase
         }
         else
         {
-            echo ">>> MISSING: ";
+            echo "MISSING: ";
             print_r($missing);
             echo "\n";
         }

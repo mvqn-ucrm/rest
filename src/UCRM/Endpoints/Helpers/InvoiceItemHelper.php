@@ -3,22 +3,6 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Core
-//use MVQN\Annotations\AnnotationReaderException;
-//use MVQN\Collections\CollectionException;
-//use MVQN\Common\ArraysException;
-//use MVQN\Common\PatternsException;
-
-// Exceptions
-//use MVQN\REST\UCRM\Endpoints\EndpointException;
-//use MVQN\REST\RestClientException;
-
-// Collections
-//use MVQN\REST\UCRM\Endpoints\Collections\InvoiceItemCollection;
-
-// Endpoints
-//use MVQN\REST\UCRM\Endpoints\InvoiceItem;
-
 /**
  * Trait InvoiceItemHelper
  *

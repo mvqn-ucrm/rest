@@ -3,20 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Core
-use MVQN\Annotations\AnnotationReaderException;
-use MVQN\Collections\CollectionException;
-use MVQN\Common\ArraysException;
-use MVQN\Common\PatternsException;
-
-// Exceptions
-use MVQN\REST\UCRM\Endpoints\EndpointException;
-use MVQN\REST\RestClientException;
-
-// Collections
-use MVQN\REST\UCRM\Endpoints\Collections\InvoiceTemplateCollection;
-
-// Endpoints
+use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\InvoiceTemplate;
 
 /**
@@ -27,7 +14,6 @@ use MVQN\REST\UCRM\Endpoints\InvoiceTemplate;
  */
 trait InvoiceTemplateHelper
 {
-
     // =================================================================================================================
     // OBJECT METHODS
     // -----------------------------------------------------------------------------------------------------------------
@@ -42,21 +28,12 @@ trait InvoiceTemplateHelper
 
     /**
      * @param string $name
-     * @return InvoiceTemplateCollection
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection
+     * @throws \Exception
      */
-    public static function getByName(string $name): InvoiceTemplateCollection
+    public static function getByName(string $name): Collection
     {
-        $invoiceTemplates = InvoiceTemplate::get()->where("name", $name);
-
-        return new InvoiceTemplateCollection($invoiceTemplates->elements());
+        return InvoiceTemplate::get()->where("name", $name);
     }
 
     // =================================================================================================================
@@ -70,5 +47,4 @@ trait InvoiceTemplateHelper
     // =================================================================================================================
     // EXTRA FUNCTIONS
     // -----------------------------------------------------------------------------------------------------------------
-
 }

@@ -3,16 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-// Core
-//use MVQN\Annotations\AnnotationReaderException;
-//use MVQN\Collections\CollectionException;
-//use MVQN\Common\ArraysException;
-//use MVQN\Common\PatternsException;
-
-// Exceptions
-//use MVQN\REST\RestClientException;
-
-// Endpoints
+//use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\Client;
 use MVQN\REST\UCRM\Endpoints\PaymentPlan;
 
@@ -35,8 +26,7 @@ trait PaymentPlanHelper
      * @param \DateTime $startDate
      * @param float $amount
      * @return PaymentPlan
-     *
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public static function createMonthly(Client $client, \DateTime $startDate, float $amount): PaymentPlan
     {
@@ -68,5 +58,4 @@ trait PaymentPlanHelper
     // =================================================================================================================
     // EXTRA FUNCTIONS
     // -----------------------------------------------------------------------------------------------------------------
-
 }

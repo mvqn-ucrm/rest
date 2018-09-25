@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Lookups;
 
-use MVQN\REST\UCRM\Endpoints\Collections\TicketAttachmentCollection;
+use MVQN\Collections\Collection;
 
 /**
  * Class TicketActivityComment
@@ -35,19 +35,19 @@ final class TicketActivityComment extends Lookup
     protected $attachments;
 
     /**
-     * @return TicketAttachmentCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getAttachments(): TicketAttachmentCollection
+    public function getAttachments(): Collection
     {
-        return new TicketAttachmentCollection($this->attachments);
+        return new Collection(TicketAttachment::class, $this->attachments);
     }
 
     /**
-     * @param TicketAttachmentCollection $value
+     * @param Collection $value
      * @return TicketActivityComment
      */
-    public function setAttachments(TicketAttachmentCollection $value): TicketActivityComment
+    public function setAttachments(Collection $value): TicketActivityComment
     {
         $this->attachments = $value->elements();
         return $this;

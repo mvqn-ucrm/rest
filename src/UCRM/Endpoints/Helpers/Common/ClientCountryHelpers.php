@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers\Common;
 
-use MVQN\REST\UCRM\Endpoints\Collections\CountryCollection;
 use MVQN\REST\UCRM\Endpoints\Country;
 
 /**
@@ -50,11 +49,7 @@ trait ClientCountryHelpers
      */
     public function setClientCountryByName(string $name): self
     {
-        /** @var CountryCollection $countries */
-        $countries = Country::getByName($name);
-
-        /** @var Country $country */
-        $country = $countries->first();
+        $country = Country::getByName($name);
         $this->{"clientCountryId"} = $country->getId();
 
         /** @var self $this */
@@ -68,7 +63,6 @@ trait ClientCountryHelpers
      */
     public function setClientCountryByCode(string $code): self
     {
-        /** @var Country $country */
         $country = Country::getByCode($code);
         $this->{"clientCountryId"} = $country->getId();
 

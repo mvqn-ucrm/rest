@@ -3,12 +3,8 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-use MVQN\Annotations\AnnotationReaderException;
-use MVQN\Collections\CollectionException;
-use MVQN\Common\{ArraysException, PatternsException};
-
-use MVQN\REST\RestClientException;
-use MVQN\REST\UCRM\Endpoints\{Collections\SurchargeCollection, EndpointException, Surcharge};
+use MVQN\Collections\Collection;
+use MVQN\REST\UCRM\Endpoints\Surcharge;
 
 /**
  * Trait SurchargeHelper
@@ -20,62 +16,33 @@ trait SurchargeHelper
     // OBJECT METHODS
     // -----------------------------------------------------------------------------------------------------------------
 
-    // NO OBJECT METHODS REQUIRED
-
     // =================================================================================================================
     // CREATE METHODS
     // -----------------------------------------------------------------------------------------------------------------
-
-    // NO INSERT ENDPOINTS
 
     // =================================================================================================================
     // READ METHODS
     // -----------------------------------------------------------------------------------------------------------------
 
-    // STANDARD READ METHODS USED
-
-    // -----------------------------------------------------------------------------------------------------------------
-
     /**
      * @param string $name
-     * @return SurchargeCollection
-     *
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection
+     * @throws \Exception
      */
-    public static function getByName(string $name): SurchargeCollection
+    public static function getByName(string $name): Collection
     {
-        $surcharges = Surcharge::get()->where("name", $name);
-
-        return new SurchargeCollection($surcharges->elements());
+        return Surcharge::get()->where("name", $name);
     }
 
     // =================================================================================================================
     // UPDATE METHODS
     // -----------------------------------------------------------------------------------------------------------------
 
-    // NO UPDATE ENDPOINTS
-
     // =================================================================================================================
     // DELETE METHODS
     // -----------------------------------------------------------------------------------------------------------------
 
-    // NO DELETE ENDPOINTS
-
     // =================================================================================================================
     // EXTRA FUNCTIONS
     // -----------------------------------------------------------------------------------------------------------------
-
-    // NO EXTRA FUNCTIONS AT THIS TIME
-
-
-
-
-
-
 }

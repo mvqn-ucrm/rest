@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
+use MVQN\Collections\Collection;
 use MVQN\REST\Endpoints\EndpointObject;
 use MVQN\REST\Annotations\EndpointAnnotation as Endpoint;
 use MVQN\REST\Annotations\PostAnnotation as Post;
@@ -10,7 +11,6 @@ use MVQN\REST\Annotations\PostRequiredAnnotation as PostRequired;
 use MVQN\REST\Annotations\PatchAnnotation as Patch;
 use MVQN\REST\Annotations\PatchRequiredAnnotation as PatchRequired;
 
-use MVQN\REST\UCRM\Endpoints\Collections\ServicePlanPeriodCollection;
 use MVQN\REST\UCRM\Endpoints\Helpers\ServicePlanHelper;
 use MVQN\REST\UCRM\Endpoints\Lookups\ServicePlanPeriod;
 
@@ -126,19 +126,19 @@ final class ServicePlan extends EndpointObject
     protected $periods;
 
     /**
-     * @return ServicePlanPeriodCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getPeriods(): ServicePlanPeriodCollection
+    public function getPeriods(): Collection
     {
-        return new ServicePlanPeriodCollection($this->periods);
+        return new Collection(ServicePlanPeriod::class, $this->periods);
     }
 
     /**
-     * @param ServicePlanPeriodCollection $periods
+     * @param Collection $periods
      * @return ServicePlan
      */
-    public function setPeriods(ServicePlanPeriodCollection $periods): ServicePlan
+    public function setPeriods(Collection $periods): ServicePlan
     {
         $this->periods = $periods->elements();
         return $this;

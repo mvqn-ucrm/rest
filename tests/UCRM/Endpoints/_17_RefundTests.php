@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
-use MVQN\Collections\Collection;
 use MVQN\REST\RestClient;
 
 require_once __DIR__ . "/TestFunctions.php";
@@ -73,8 +72,7 @@ class _17_RefundTests extends \PHPUnit\Framework\TestCase
 
     public function testRefundInsert()
     {
-        /** @var Client $client */
-        $client = Client::getById(1);
+        //$client = Client::getById(1);
 
         $refund = (new Refund())
             ->setMethod(Payment::METHOD_CUSTOM)

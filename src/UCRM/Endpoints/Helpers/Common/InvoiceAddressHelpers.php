@@ -87,7 +87,7 @@ trait InvoiceAddressHelpers
             $this->{"zipCode"} !== $zipCode)
             $sameAsContact = false;
 
-        // IF the passed invoiceAdddress values are the same as the address values...
+        // IF the passed invoiceAddress values are the same as the address values...
         if($sameAsContact)
         {
             // THEN set all the invoiceAddress values to null.

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Lookups;
 
-use MVQN\REST\UCRM\Endpoints\Collections\ClientContactTypeCollection;
+use MVQN\Collections\Collection;
 
 /**
  * Class ClientContact
@@ -87,13 +87,12 @@ final class ClientContact extends Lookup
     protected $types;
 
     /**
-     * @return ClientContactTypeCollection
+     * @return Collection
      * @throws \Exception
      */
-    public function getTypes(): ClientContactTypeCollection
+    public function getTypes(): Collection
     {
-        /** @var ClientContactTypeCollection $types */
-        $types = new ClientContactTypeCollection($this->types);
+        $types = new Collection(ClientContactType::class, $this->types);
         return $types;
     }
 

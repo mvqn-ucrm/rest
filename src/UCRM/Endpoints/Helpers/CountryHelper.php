@@ -3,11 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
-
-// Collections
-use MVQN\REST\UCRM\Endpoints\Collections\StateCollection;
-
-// Endpoints
+use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\Country;
 use MVQN\REST\UCRM\Endpoints\State;
 
@@ -24,21 +20,15 @@ trait CountryHelper
     // -----------------------------------------------------------------------------------------------------------------
 
     /**
-     * @return StateCollection
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @return Collection
+     * @throws \Exception
      */
-    public function getStates(): StateCollection
+    public function getStates(): Collection
     {
         if($this->id === null)
-            throw new EndpointException("Country->getStates() cannot be called when the Country ID is not set!");
+            throw new \Exception("Country->getStates() cannot be called when the Country ID is not set!");
 
-        return new StateCollection(State::get("/countries/".$this->id."/states")->elements());
+        return State::get("/countries/".$this->id."/states");
     }
 
     // =================================================================================================================
@@ -52,13 +42,7 @@ trait CountryHelper
     /**
      * @param string $name
      * @return Country|null
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public static function getByName(string $name): ?Country
     {
@@ -72,13 +56,7 @@ trait CountryHelper
     /**
      * @param string $code
      * @return Country|null
-     * @throws AnnotationReaderException
-     * @throws ArraysException
-     * @throws CollectionException
-     * @throws EndpointException
-     * @throws PatternsException
-     * @throws RestClientException
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public static function getByCode(string $code): ?Country
     {

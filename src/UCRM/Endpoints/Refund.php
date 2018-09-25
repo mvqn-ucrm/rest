@@ -32,7 +32,7 @@ use MVQN\REST\UCRM\Endpoints\Lookups\PaymentCover;
  * @method int|null getClientId()
  * @method Refund setClientId(int $id)
  * @method int|null getCurrencyCode()
- * @method Refund setCurrencyCode(int $code)
+ * @method Refund setCurrencyCode(string $code)
  * @method PaymentCover[]|null getPaymentCovers()
  * @method Refund setPaymentCovers(array $covers)
  *

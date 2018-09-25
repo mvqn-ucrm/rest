@@ -30,16 +30,17 @@ trait InvoiceHelpers
         return $invoice;
     }
 
+
     /**
      * @param Invoice $value
      * @return self Returns the appropriate Endpoint instance, for method chaining purposes.
      */
-    public function setPayment(Invoice $value): self
-    {
-        $this->{"invoiceId"} = $value->getId();
-
-        /** @var self $this */
-        return $this;
-    }
+//    public function setPayment(Invoice $value): self
+//    {
+//        $this->{"invoiceId"} = $value->getId();
+//
+//        /** @var self $this */
+//        return $this;
+//    }
 
 }
