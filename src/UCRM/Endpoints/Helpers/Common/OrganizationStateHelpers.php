@@ -23,6 +23,8 @@ trait OrganizationStateHelpers
      */
     public function getOrganizationState(): ?State
     {
+        $state = null;
+
         if(property_exists($this, "organizationStateId") && $this->{"organizationStateId"} !== null)
             $state = State::getById($this->{"organizationStateId"});
 

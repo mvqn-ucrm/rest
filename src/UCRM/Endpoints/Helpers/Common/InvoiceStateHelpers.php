@@ -23,6 +23,8 @@ trait InvoiceStateHelpers
      */
     public function getInvoiceState(): ?State
     {
+        $state = null;
+
         if(property_exists($this, "invoiceStateId") && $this->{"invoiceStateId"} !== null)
             $state = State::getById($this->{"invoiceStateId"});
 

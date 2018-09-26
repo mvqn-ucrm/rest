@@ -23,6 +23,8 @@ trait OrganizationCountryHelpers
      */
     public function getOrganizationCountry(): ?Country
     {
+        $country = null;
+
         if(property_exists($this, "organizationCountryId") && $this->{"organizationCountryId"} !== null)
             $country = Country::getById($this->{"organizationCountryId"});
 

@@ -23,6 +23,8 @@ trait StateHelpers
      */
     public function getState(): ?State
     {
+        $state = null;
+
         if(property_exists($this, "stateId") && $this->{"stateId"} !== null)
             $state = State::getById($this->{"stateId"});
 

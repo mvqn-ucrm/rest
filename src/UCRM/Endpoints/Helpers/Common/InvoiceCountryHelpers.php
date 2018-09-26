@@ -23,6 +23,8 @@ trait InvoiceCountryHelpers
      */
     public function getInvoiceCountry(): ?Country
     {
+        $country = null;
+
         if(property_exists($this, "invoiceCountryId") && $this->{"invoiceCountryId"} !== null)
             $country = Country::getById($this->{"invoiceCountryId"});
 

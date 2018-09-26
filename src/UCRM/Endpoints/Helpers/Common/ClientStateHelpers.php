@@ -23,6 +23,8 @@ trait ClientStateHelpers
      */
     public function getClientState(): ?State
     {
+        $state = null;
+
         if(property_exists($this, "clientStateId") && $this->{"clientStateId"} !== null)
             $state = State::getById($this->{"clientStateId"});
 

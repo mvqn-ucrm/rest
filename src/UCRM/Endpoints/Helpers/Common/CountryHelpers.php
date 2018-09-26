@@ -23,6 +23,8 @@ trait CountryHelpers
      */
     public function getCountry(): ?Country
     {
+        $country = null;
+
         if(property_exists($this, "countryId") && $this->{"countryId"} !== null)
             $country = Country::getById($this->{"countryId"});
 
