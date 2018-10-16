@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace MVQN\REST\UCRM\Endpoints;
 
+use MVQN\Collections\Collection;
 use MVQN\REST\RestClient;
 use MVQN\REST\UCRM\Endpoints\ClientContact;
 
@@ -263,6 +264,35 @@ class _02_ClientTests extends \PHPUnit\Framework\TestCase
         echo $client."\n";
         echo "\n";
     }
+
+    public function testGetClientsOnly()
+    {
+        /** @var Collection $clients */
+        $clients = Client::getClientsOnly();
+
+        echo ">>> Client::getClientsOnly()\n";
+        echo $clients."\n";
+        echo "\n";
+
+        //$this->assertCount(8, $clients);
+        $this->assertNotEmpty($clients);
+    }
+
+
+    public function testGetLeadsOnly()
+    {
+        /** @var Collection $leads */
+        $leads = Client::getLeadsOnly();
+
+        echo ">>> Client::getLeadsOnly()\n";
+        echo $leads."\n";
+        echo "\n";
+
+        //$this->assertCount(35, $leads);
+        $this->assertNotEmpty($leads);
+    }
+
+
 
     public function testGetByUserIdent()
     {

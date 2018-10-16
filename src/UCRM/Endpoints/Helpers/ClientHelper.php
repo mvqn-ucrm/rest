@@ -280,6 +280,26 @@ trait ClientHelper
     // -----------------------------------------------------------------------------------------------------------------
 
     /**
+     * @return Collection
+     * @throws \Exception
+     */
+    public static function getClientsOnly(): Collection
+    {
+        return Client::get("", [], [ "lead" => "0" ]);
+
+    }
+
+    /**
+     * @return Collection
+     * @throws \Exception
+     */
+    public static function getLeadsOnly(): Collection
+    {
+        return Client::get("", [], [ "lead" => "1" ]);
+
+    }
+
+    /**
      * Sends an HTTP GET Request using the calling class's annotated information, for an object, given the Custom ID.
      *
      * @param string $userIdent The Custom ID of the Client for which to retrieve.
