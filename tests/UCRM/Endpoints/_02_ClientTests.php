@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace MVQN\REST\UCRM\Endpoints;
 
 use MVQN\REST\RestClient;
-use MVQN\REST\UCRM\Endpoints\Lookups\ClientContact;
+use MVQN\REST\UCRM\Endpoints\ClientContact;
 
 require_once __DIR__ . "/TestFunctions.php";
 
@@ -330,6 +330,23 @@ class _02_ClientTests extends \PHPUnit\Framework\TestCase
     // -----------------------------------------------------------------------------------------------------------------
 
     // NO DELETE ENDPOINTS
+
+    public function testDelContact()
+    {
+        /** @var Client $client */
+        $client = Client::getById(1);
+
+        $contacts = $client->getContacts();
+
+        /** @var ClientContact $contact */
+        $contact = $contacts->elements()[2];
+
+        //$results = $client->delContact(2);
+        $client->delContactById($contact->getId());
+
+
+        echo "";
+    }
 
 
 

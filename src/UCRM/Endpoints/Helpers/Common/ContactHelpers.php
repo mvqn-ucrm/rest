@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace MVQN\REST\UCRM\Endpoints\Helpers\Common;
 
 use MVQN\Collections\Collection;
-use MVQN\REST\UCRM\Endpoints\Lookups\ClientContact;
+use MVQN\REST\UCRM\Endpoints\ClientContact;
 
 
 /**

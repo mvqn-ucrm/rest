@@ -5,6 +5,7 @@ namespace MVQN\REST\UCRM\Endpoints\Helpers;
 
 use MVQN\Collections\Collection;
 use MVQN\REST\UCRM\Endpoints\Client;
+use MVQN\REST\UCRM\Endpoints\ClientContact;
 use MVQN\REST\UCRM\Endpoints\Organization;
 
 /**
@@ -96,6 +97,77 @@ trait ClientHelper
         /** @var Client $this */
         return $this;
     }
+
+
+
+    /**
+     * @param ClientContact $contact The ClientContact for which to add to the Client's contacts list.
+     * @return Client Returns the current Client, for method chaining purposes.
+     * @throws \Exception Throws an Exception if an error occurs.
+     */
+    public function addContact(ClientContact $contact): Client
+    {
+        /** @var Client $client */
+        $client = $this;
+
+        if($contact->getId() === null)
+        {
+            $contact->setClientId($client->getId());
+            $contact->insert();
+        }
+
+        return $client;
+    }
+
+    /**
+     * @param int $index The index in the Client::contacts[] array for which to delete the ClientContact.
+     * @return Client Returns the current Client, for method chaining purposes.
+     * @throws \Exception Throws an Exception if an error occurs.
+     */
+    public function delContact(int $index): Client
+    {
+        /** @var Client $client */
+        $client = $this;
+        $contacts = $client->getContacts()->elements();
+
+        if($index < count($contacts))
+        {
+            /** @var ClientContact $contact */
+            $contact = $contacts[$index];
+            $success = $contact->remove();
+
+            if($success)
+                unset($contacts[$index]);
+        }
+
+        $contacts = new Collection(ClientContact::class, array_values($contacts));
+        $client->setContacts($contacts);
+
+        return $client;
+    }
+
+    /**
+     * @param int $contactId The ID of the ClientContact for which to delete.
+     * @return Client Returns the current Client, for method chaining purposes.
+     * @throws \Exception Throws an Exception if an error occurs.
+     */
+    public function delContactById(int $contactId): Client
+    {
+        /** @var Client $client */
+        $client = $this;
+        $contacts = $client->getContacts()->elements();
+
+        foreach($contacts as $index => $contact)
+        {
+            /** @var ClientContact $contact */
+            if($contact->getId() === $contactId)
+                $this->delContact($index);
+        }
+
+        return $client;
+    }
+
+
 
     // =================================================================================================================
     // CREATE METHODS

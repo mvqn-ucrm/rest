@@ -1,12 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace MVQN\REST\UCRM\Endpoints\Lookups;
+namespace MVQN\REST\UCRM\Endpoints;
 
+use MVQN\REST\Annotations\EndpointAnnotation as Endpoint;
 use MVQN\REST\Annotations\PostAnnotation as Post;
 use MVQN\REST\Annotations\PatchAnnotation as Patch;
 
 use MVQN\Collections\Collection;
+use MVQN\REST\Endpoints\EndpointObject;
+use MVQN\REST\UCRM\Endpoints\Helpers\ClientContactHelper;
+use MVQN\REST\UCRM\Endpoints\Lookups\ClientContactType;
 
 /**
  * Class ClientContact
@@ -15,7 +19,13 @@ use MVQN\Collections\Collection;
  * @author Ryan Spaeth <rspaeth@mvqn.net>
  * @final
  *
+ * @Endpoint { "get": "/clients/:clientId/contacts", "getById": "/clients/contacts/:id" }
+ * @Endpoint { "post": "/clients/:clientId/contacts" }
+ * @Endpoint { "patch": "/clients/contacts/:id" }
+ * @Endpoint { "delete": "/clients/contacts/:id" }
+ *
  * @method int|null getClientId()
+ * @method ClientContact setClientId(int $clientId)
  * @method string|null getEmail()
  * @method ClientContact setEmail(string $email)
  * @method string|null getPhone()
@@ -30,8 +40,10 @@ use MVQN\Collections\Collection;
  * @see ClientContact::setTypes()
  *
  */
-final class ClientContact extends Lookup
+final class ClientContact extends EndpointObject
 {
+    use ClientContactHelper;
+
     // =================================================================================================================
     // PROPERTIES
     // -----------------------------------------------------------------------------------------------------------------

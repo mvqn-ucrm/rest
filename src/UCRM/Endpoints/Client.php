@@ -11,8 +11,8 @@ use MVQN\REST\Annotations\PostRequiredAnnotation as PostRequired;
 use MVQN\REST\Annotations\PatchAnnotation as Patch;
 use MVQN\REST\Annotations\PatchRequiredAnnotation as PatchRequired;
 
+use MVQN\REST\UCRM\Endpoints\ClientContact;
 use MVQN\REST\UCRM\Endpoints\Lookups\ClientBankAccount;
-use MVQN\REST\UCRM\Endpoints\Lookups\ClientContact;
 use MVQN\REST\UCRM\Endpoints\Lookups\ClientContactAttribute;
 use MVQN\REST\UCRM\Endpoints\Lookups\ClientTag;
 
@@ -26,6 +26,7 @@ use MVQN\REST\UCRM\Endpoints\Lookups\ClientTag;
  * @Endpoint { "get": "/clients", "getById": "/clients/:id" }
  * @Endpoint { "post": "/clients" }
  * @Endpoint { "patch": "/clients/:id" }
+ * @Endpoint { "delete": "/clients/:id" }
  *
  * @method string|null getUserIdent()
  * @method Client setUserIdent(string $ident)
@@ -101,6 +102,10 @@ use MVQN\REST\UCRM\Endpoints\Lookups\ClientTag;
  * @method Client setUsername(string $username)
  * @method string|null getAvatarColor()
  * @method Client setAvatarColor(string $color)
+ * @method float|null getAddressGpsLat()
+ * @method Client setAddressGpsLat(float $latitude)
+ * @method float|null getAddressGpsLon()
+ * @method Client setAddressGpsLon(float $longitude)
  * @see    Client::getContacts()
  * @see    Client::setContacts()
  * @see    Client::getAttributes()
@@ -399,6 +404,20 @@ final class Client extends EndpointObject
      * @Patch
      */
     protected $avatarColor;
+
+    /**
+     * @var float
+     * @Post
+     * @Patch
+     */
+    protected $addressGpsLat;
+
+    /**
+     * @var float
+     * @Post
+     * @Patch
+     */
+    protected $addressGpsLon;
 
     /**
      * @var ClientContact[]
