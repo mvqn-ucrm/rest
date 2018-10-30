@@ -6,25 +6,23 @@ namespace MVQN\REST\UCRM\Endpoints\Lookups;
 use MVQN\REST\Annotations\PostAnnotation as Post;
 use MVQN\REST\Annotations\PatchAnnotation as Patch;
 
+use MVQN\Collections\Collection;
+
 /**
- * Class TicketAttachment
+ * Class TicketActivityJobAssignment
  *
  * @package UCRM\REST\Endpoints
  * @author Ryan Spaeth <rspaeth@mvqn.net>
  * @final
  *
- * @method int|null getId()
- * @method TicketAttachment setId(int $id)
- * @method string|null getFilename()
- * @method TicketAttachment setFilename(string $filename)
- * @method int|null getSize()
- * @method TicketAttachment setSize(int $size)
- * @method string|null getMimeType()
- * @method TicketAttachment setMimeType(string $type)
- *
+ * @method int|null getAssignedJobId()
  */
-final class TicketAttachment extends Lookup
+final class TicketActivityJobAssignment extends Lookup
 {
+
+    public const ASSIGNED_JOB_TYPE_ADD = "add";
+    public const ASSIGNED_JOB_TYPE_REMOVE = "remove";
+
     // =================================================================================================================
     // PROPERTIES
     // -----------------------------------------------------------------------------------------------------------------
@@ -32,21 +30,11 @@ final class TicketAttachment extends Lookup
     /**
      * @var int
      */
-    protected $id;
+    protected $assignedJobId;
 
     /**
      * @var string
      */
-    protected $filename;
-
-    /**
-     * @var int
-     */
-    protected $size;
-
-    /**
-     * @var string
-     */
-    protected $mimeType;
+    protected $type;
 
 }

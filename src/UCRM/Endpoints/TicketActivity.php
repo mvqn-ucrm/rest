@@ -9,6 +9,12 @@ use MVQN\REST\Annotations\PostAnnotation as Post;
 use MVQN\REST\Annotations\PostRequiredAnnotation as PostRequired;
 use MVQN\REST\Annotations\PatchAnnotation as Patch;
 use MVQN\REST\Annotations\PatchRequiredAnnotation as PatchRequired;
+use MVQN\REST\UCRM\Endpoints\Lookups\TicketActivityAssignment;
+use MVQN\REST\UCRM\Endpoints\Lookups\TicketActivityClientAssignment;
+use MVQN\REST\UCRM\Endpoints\Lookups\TicketActivityComment;
+use MVQN\REST\UCRM\Endpoints\Lookups\TicketActivityCommentAttachment;
+use MVQN\REST\UCRM\Endpoints\Lookups\TicketActivityJobAssignment;
+use MVQN\REST\UCRM\Endpoints\Lookups\TicketActivityStatusChange;
 
 //use MVQN\REST\UCRM\Endpoints\Helpers\PaymentHelper;
 //use MVQN\REST\UCRM\Endpoints\Lookups\PaymentCover;
@@ -20,22 +26,34 @@ use MVQN\REST\Annotations\PatchRequiredAnnotation as PatchRequired;
  * @author Ryan Spaeth <rspaeth@mvqn.net>
  * @final
  *
- * @deprecated NOT FULLY IMPLEMENTED!
- *
- * @Endpoint { "get": "/ticketing/tickets/activities", "getById": "/ticketing/ticket/activities/:id" }
+ * @Endpoint { "get": "/ticketing/tickets/activities", "getById": "/ticketing/tickets/activities/:id" }
  * @Endpoint { "post": "/ticketing/tickets/activities" }
  * @Endpoint { "patch": "/ticketing/tickets/activities/:id" }
  * @Endpoint { "delete": "/ticketing/tickets/activities/:id" }
  *
- * @method string|null getTitle()
- * @method TicketActivity setTitle(string $title)
- *
- *
+ * @method int|null getUserId()
+ * @method TicketActivity setUserId(int $userId)
+ * @method string|null getCreatedAt()
+ * @see    TicketActivity setCreatedAt(\DateTimeImmutable $date)
+ * @method bool|null getPublic()
+ * @method TicketActivity setPublic(bool $isPublic)
+ * @method int|null getTicketId()
+ * @method TicketActivity setTicketId(int $ticketId)
+ * @see    TicketActivityComment getComment()
+ * @see    TicketActivity setComment(TicketActivityComment $comment)
+ * @see    TicketActivityAssignment getAssignment()
+ * @see    TicketActivity setAssignment(TicketActivityAssignment $assignment)
+ * @see    TicketActivityClientAssignment getClientAssignment()
+ * @see    TicketActivity setClientAssignment(TicketActivityClientAssignment $clientAssignment)
+ * @see    TicketActivityStatusChange getStatusChange()
+ * @see    TicketActivity setStatusChange(TicketActivityStatusChange $statusChange)
+ * @see    TicketActivityJobAssignment getJobAssignment()
+ * @see    TicketActivity setJobAssignment(TicketActivityJobAssignment $jobAssignment)
+ * @method string|null getType()
+ * @method TicketActivity setType(string $type)
  */
 final class TicketActivity extends EndpointObject
 {
-    //use PaymentHelper;
-
     // =================================================================================================================
     // ENUMS
     // -----------------------------------------------------------------------------------------------------------------
@@ -43,6 +61,7 @@ final class TicketActivity extends EndpointObject
     public const TYPE_COMMENT           = "comment";
     public const TYPE_ASSIGNMENT        = "assignment";
     public const TYPE_ASSIGNMENT_CLIENT = "assignment_client";
+    public const TYPE_ASSIGNMENT_JOB    = "assignment_job";
     public const TYPE_STATUS_CHANGE     = "status_change";
 
     // =================================================================================================================
@@ -51,8 +70,8 @@ final class TicketActivity extends EndpointObject
 
     /**
      * @var int
-     * @PostRequired
-     * @PatchRequired
+     * @Post
+     * @Patch
      */
     protected $userId;
 
@@ -64,12 +83,12 @@ final class TicketActivity extends EndpointObject
     protected $createdAt;
 
     /**
-     * @param \DateTime $value
+     * @param \DateTimeInterface $date
      * @return TicketActivity
      */
-    public function setCreatedAt(\DateTime $value): TicketActivity
+    public function setCreatedAt(\DateTimeInterface $date): TicketActivity
     {
-        $this->createdAt = $value->format("c");
+        $this->createdAt = $date->format("c");
         return $this;
     }
 
@@ -87,6 +106,151 @@ final class TicketActivity extends EndpointObject
      */
     protected $ticketId;
 
+    /**
+     * @var array
+     * @Post
+     * @Patch
+     */
+    protected $comment;
 
+    /**
+     * @return TicketActivityComment|null
+     * @todo Fix nested Lookups issue with RestObject.
+     */
+    public function getComment(): ?TicketActivityComment
+    {
+        return $this->comment != null ? new TicketActivityComment($this->comment) : null;
+    }
+
+    /**
+     * @param TicketActivityComment $comment
+     * @return TicketActivity
+     * @throws \Exception
+     * @todo Fix nested Lookups issue with RestObject.
+     */
+    public function setComment(TicketActivityComment $comment): TicketActivity
+    {
+        $this->comment = $comment->toArray("post");
+        return $this;
+    }
+
+    /**
+     * @var array
+     * @Post
+     * @Patch
+     */
+    protected $assignment;
+
+    /**
+     * @return TicketActivityAssignment|null
+     * @todo Fix nested Lookups issue with RestObject.
+     */
+    public function getAssignment(): ?TicketActivityAssignment
+    {
+        return $this->assignment !== null ? new TicketActivityAssignment($this->assignment) : null;
+    }
+
+    /**
+     * @param TicketActivityAssignment $assignment
+     * @return TicketActivity
+     * @throws \Exception
+     * @todo Fix nested Lookups issue with RestObject.
+     */
+    public function setAssignment(TicketActivityAssignment $assignment): TicketActivity
+    {
+        $this->assignment = $assignment->toArray("post");
+        return $this;
+    }
+
+    /**
+     * @var array
+     * @Post
+     * @Patch
+     */
+    protected $clientAssignment;
+
+    /**
+     * @return TicketActivityClientAssignment|null
+     * @todo Fix nested Lookups issue with RestObject.
+     */
+    public function getClientAssignment(): ?TicketActivityClientAssignment
+    {
+        return $this->clientAssignment !== null ? new TicketActivityClientAssignment($this->clientAssignment) : null;
+    }
+
+    /**
+     * @param TicketActivityClientAssignment $clientAssignment
+     * @return TicketActivity
+     * @throws \Exception
+     * @todo Fix nested Lookups issue with RestObject.
+     */
+    public function setClientAssignment(TicketActivityClientAssignment $clientAssignment): TicketActivity
+    {
+        $this->clientAssignment = $clientAssignment->toArray("post");
+        return $this;
+    }
+
+    /**
+     * @var array
+     * @Post
+     * @Patch
+     */
+    protected $statusChange;
+
+    /**
+     * @return TicketActivityStatusChange|null
+     * @todo Fix nested Lookups issue with RestObject.
+     */
+    public function getStatusChange(): ?TicketActivityStatusChange
+    {
+        return $this->statusChange !== null ? new TicketActivityStatusChange($this->statusChange) : null;
+    }
+
+    /**
+     * @param TicketActivityStatusChange $statusChange
+     * @return TicketActivity
+     * @throws \Exception
+     * @todo Fix nested Lookups issue with RestObject.
+     */
+    public function setStatusChange(TicketActivityStatusChange $statusChange): TicketActivity
+    {
+        $this->statusChange = $statusChange->toArray("post");
+        return $this;
+    }
+
+    /**
+     * @var array
+     * @Post
+     * @Patch
+     */
+    protected $jobAssignment;
+
+    /**
+     * @return TicketActivityJobAssignment|null
+     * @todo Fix nested Lookups issue with RestObject.
+     */
+    public function getJobAssignment(): ?TicketActivityJobAssignment
+    {
+        return $this->jobAssignment !== null ? new TicketActivityJobAssignment($this->jobAssignment) : null;
+    }
+
+    /**
+     * @param TicketActivityJobAssignment $jobAssignment
+     * @return TicketActivity
+     * @throws \Exception
+     * @todo Fix nested Lookups issue with RestObject.
+     */
+    public function setJobAssignment(TicketActivityJobAssignment $jobAssignment): TicketActivity
+    {
+        $this->jobAssignment = $jobAssignment->toArray("post");
+        return $this;
+    }
+
+    /**
+     * @var string
+     * @Post
+     * @Patch
+     */
+    protected $type;
 
 }

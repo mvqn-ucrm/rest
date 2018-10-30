@@ -17,8 +17,7 @@ use MVQN\Collections\Collection;
  *
  * @method string|null getBody()
  * @method TicketActivityComment setBody(string $body)
- * @see    TicketActivityComment::getAttachments()
- * @see    TicketActivityComment::setAttachments()
+ * @see    Collection|null getAttachments()
  */
 final class TicketActivityComment extends Lookup
 {
@@ -28,11 +27,15 @@ final class TicketActivityComment extends Lookup
 
     /**
      * @var string
+     * @PostRequired
+     * @PatchRequired
      */
     protected $body;
 
     /**
-     * @var TicketAttachment[]
+     * @var TicketActivityCommentAttachment[]
+     * @Post
+     * @Patch
      */
     protected $attachments;
 
@@ -42,17 +45,7 @@ final class TicketActivityComment extends Lookup
      */
     public function getAttachments(): Collection
     {
-        return new Collection(TicketAttachment::class, $this->attachments);
-    }
-
-    /**
-     * @param Collection $value
-     * @return TicketActivityComment
-     */
-    public function setAttachments(Collection $value): TicketActivityComment
-    {
-        $this->attachments = $value->elements();
-        return $this;
+        return new Collection(TicketActivityCommentAttachment::class, $this->attachments);
     }
 
 }
