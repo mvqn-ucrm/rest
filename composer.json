@@ -1,5 +1,5 @@
 {
-    "name": "mvqn/rest-ucrm",
+    "name": "mvqn-ucrm/rest",
     "description": "A simple REST Client library for interfacing with UCRM Endpoints.",
     "minimum-stability": "stable",
     "type": "library",
