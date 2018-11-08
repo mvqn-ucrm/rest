@@ -107,7 +107,6 @@ use MVQN\REST\UCRM\Endpoints\Lookups\ClientTag;
  * @method float|null getAddressGpsLon()
  * @method Client setAddressGpsLon(float $longitude)
  * @see    Client::getContacts()
- * @see    Client::setContacts()
  * @see    Client::getAttributes()
  * @see    Client::setAttributes()
  * @method float|null getAccountBalance()
@@ -421,8 +420,6 @@ final class Client extends EndpointObject
 
     /**
      * @var ClientContact[]
-     * @Post
-     * @Patch
      */
     protected $contacts;
 
@@ -434,16 +431,6 @@ final class Client extends EndpointObject
     {
         $contacts = new Collection(ClientContact::class, $this->contacts);
         return $contacts;
-    }
-
-    /**
-     * @param Collection $values
-     * @return Client Returns the Client instance, for method chaining purposes.
-     */
-    public function setContacts(Collection $values): Client
-    {
-        $this->contacts = $values->elements();
-        return $this;
     }
 
     /**
